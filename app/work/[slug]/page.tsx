@@ -20,9 +20,24 @@ export async function generateMetadata({
   const { slug } = await params;
   const study = work.find((w) => w.slug === slug);
   if (!study) return {};
+  const img = images[study.imageKey as ImageKey] as { src: string; alt: string };
   return {
     title: `${study.title} — Disha Shaw`,
     description: study.intro,
+    alternates: { canonical: `/work/${study.slug}` },
+    openGraph: {
+      title: `${study.title} — Disha Shaw`,
+      description: study.intro,
+      url: `/work/${study.slug}`,
+      type: "article",
+      images: [{ url: img.src, alt: img.alt }, { url: "/hero.png" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${study.title} — Disha Shaw`,
+      description: study.intro,
+      images: [img.src],
+    },
   };
 }
 

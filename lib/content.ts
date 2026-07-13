@@ -11,6 +11,9 @@ export const site = {
   name: "Disha Shaw",
   role: "Founder & Creative Director",
   brand: "Bornfree Fashions",
+  /** Canonical site URL — used by the sitemap, robots.txt and Open Graph
+   *  tags. Swap for the custom domain when one is connected. */
+  url: "https://dishashaw.com",
   brandUrl: "https://bornfreefashions.com",
   email: "dishaw14july@gmail.com",
   socials: [

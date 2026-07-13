@@ -19,6 +19,27 @@ export async function generateMetadata({
   return {
     title: `${post.title} — Disha Shaw`,
     description: post.excerpt,
+    alternates: { canonical: `/journal/${post.slug}` },
+    openGraph: {
+      title: `${post.title} — Disha Shaw`,
+      description: post.excerpt,
+      url: `/journal/${post.slug}`,
+      type: "article",
+      images: [
+        {
+          url: "/hero.png",
+          width: 1110,
+          height: 951,
+          alt: "Disha Shaw — Founder & Creative Director of Bornfree Fashions",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} — Disha Shaw`,
+      description: post.excerpt,
+      images: ["/hero.png"],
+    },
   };
 }
 

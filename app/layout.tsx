@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { LenisProvider } from "@/lib/lenis";
+import { site } from "@/lib/content";
 import Cursor from "@/components/ui/Cursor";
 import Preloader from "@/components/ui/Preloader";
 import FloatingNav from "@/components/nav/FloatingNav";
@@ -25,14 +26,34 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: "Disha Shaw — Founder & Creative Director, Bornfree Fashions",
   description:
     "The online home of Disha Shaw, founder and creative director of Bornfree Fashions — men's bottomwear made in Kolkata, built on the philosophy of Freedom of Body.",
+  alternates: { canonical: "/" },
   openGraph: {
     title: "Disha Shaw — Founder & Creative Director",
     description:
       "Twenty years of craft, one belief: Freedom of Body. The portfolio of the founder behind Bornfree Fashions.",
+    url: "/",
+    siteName: "Disha Shaw",
     type: "website",
+    locale: "en_IN",
+    images: [
+      {
+        url: "/hero.png",
+        width: 1110,
+        height: 951,
+        alt: "Disha Shaw — Founder & Creative Director of Bornfree Fashions",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Disha Shaw — Founder & Creative Director",
+    description:
+      "Twenty years of craft, one belief: Freedom of Body. The portfolio of the founder behind Bornfree Fashions.",
+    images: ["/hero.png"],
   },
 };
 
