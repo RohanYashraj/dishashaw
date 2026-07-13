@@ -1,41 +1,38 @@
 /**
  * Central image manifest — every visual slot on the site resolves here.
  *
- * PLACEHOLDERS: swap any `src` with final photography of Disha / Bornfree.
- * `source` marks where each placeholder comes from:
- *   "bornfree" — real Bornfree Fashions CDN imagery (used in Work sections)
- *   "unsplash" — curated editorial placeholders, to be replaced later
+ * `source` marks where each image comes from:
+ *   "bornfree" — real Bornfree Fashions CDN imagery (campaign + product photography)
+ *   "unsplash" — editorial placeholders for slots that need photography the brand
+ *                doesn't shoot (atelier hands, sketching, moodboards)
+ *   "local"    — files in /public
  */
 
 export type Img = {
   src: string;
   alt: string;
-  source: "bornfree" | "unsplash";
+  source: "bornfree" | "unsplash" | "local";
 };
 
 const u = (id: string, w = 1200) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&q=80&w=${w}`;
 
-const bf = (file: string) => `https://bornfreefashions.com/cdn/shop/files/${file}`;
+const bf = (file: string, w = 1100) =>
+  `https://bornfreefashions.com/cdn/shop/files/${file}?width=${w}`;
 
 export const images = {
   /* ————— Hero ————— */
   heroPortrait: {
-    src: u("1502716119720-b23a93e5fe1b", 1000),
-    alt: "Portrait placeholder — Disha Shaw, editorial style",
-    source: "unsplash",
-  },
-  heroDetail: {
-    src: u("1528459801416-a9e53bbf4e17", 700),
-    alt: "Fabric pattern detail",
-    source: "unsplash",
+    src: "/hero.png", // transparent cutout, bleeds to the section's bottom edge
+    alt: "Disha Shaw — Founder & Creative Director of Bornfree Fashions",
+    source: "local",
   },
 
   /* ————— Story / About ————— */
   storyPortrait: {
-    src: u("1524504388940-b1c1722653e1", 900),
-    alt: "Portrait placeholder — the founder at work",
-    source: "unsplash",
+    src: bf("002A5601_copy.jpg"),
+    alt: "Bornfree campaign — navy cargos, shot on location",
+    source: "bornfree",
   },
   storyAtelier: {
     src: u("1558769132-cb1aea458c5e", 900),
@@ -45,64 +42,62 @@ export const images = {
 
   /* ————— Philosophy pillar accents ————— */
   philosophyFreedom: {
-    src: u("1529139574466-a303027c1d8b", 800),
-    alt: "Movement — fashion in motion",
-    source: "unsplash",
+    src: bf("13-06-2026--caio_jardel02435.jpg", 800),
+    alt: "Bornfree — mid-stride in indigo cargos",
+    source: "bornfree",
   },
   philosophyCraft: {
     src: u("1605518216938-7c31b7b14ad0", 800),
-    alt: "Hands sewing — craftsmanship",
+    alt: "Hands at the sewing machine — craftsmanship",
     source: "unsplash",
   },
   philosophyComfort: {
-    src: u("1521572163474-6864f9cf17ab", 800),
-    alt: "Soft cotton garment",
-    source: "unsplash",
+    src: bf("13-06-2026--caio_jardel03670.jpg", 800),
+    alt: "Bornfree khaki joggers — drawstring detail",
+    source: "bornfree",
   },
   philosophyAuthenticity: {
-    src: u("1515886657613-9f3515b0c78f", 800),
-    alt: "Editorial portrait — quiet confidence",
-    source: "unsplash",
+    src: bf("30-06-2025_mathews0561_1_2114edae-456f-48b1-9eed-88a7ce88b7df.jpg", 800),
+    alt: "Bornfree editorial — olive cargos, studio",
+    source: "bornfree",
   },
   philosophyLongevity: {
-    src: u("1434389677669-e08b4cac3105", 800),
-    alt: "Timeless garments on a rail",
-    source: "unsplash",
+    src: bf("10645-FULL-dark-green.jpg", 800),
+    alt: "Bornfree dark green joggers — built to last",
+    source: "bornfree",
   },
 
   /* ————— Selected Work (real Bornfree imagery) ————— */
   workBrand: {
-    src: bf("13-06-2026--caio_jardel02430.jpg?v=1783493674&width=1100"),
+    src: bf("13-06-2026--caio_jardel02430.jpg"),
     alt: "Bornfree Fashions campaign photography",
     source: "bornfree",
   },
-  workSketch: {
-    src: bf("10282-left-navy.jpg?v=1776752257&width=1100"),
-    alt: "Bornfree navy garment — from sketch to production",
+  workCargo: {
+    src: bf("13-06-2026--caio_jardel03046_baa3d712-479d-4998-ba4b-9e2e43ed6106.jpg"),
+    alt: "Bornfree taupe cargo joggers — pocket architecture",
     source: "bornfree",
   },
-  workProcess: {
-    src: bf(
-      "10435-MEDIUM_OLIVE-LEFT-Photoroom_2ec30766-9bd1-408e-bc31-e04b791812bb.jpg?v=1775736354&width=1100"
-    ),
-    alt: "Bornfree olive garment — design process",
+  workFit: {
+    src: bf("13-06-2026--caio_jardel03671.jpg"),
+    alt: "Bornfree khaki joggers — waistband and drawstring detail",
     source: "bornfree",
   },
-  workCustomer: {
-    src: bf("002A5402_235ff6b6-69dd-46b8-8141-729b31e9806e.jpg?v=1773134508&width=1100"),
+  workQuality: {
+    src: bf("10725leftolive.jpg"),
+    alt: "Bornfree olive cargos — studio fit shot",
+    source: "bornfree",
+  },
+  workD2C: {
+    src: bf("002A5402_235ff6b6-69dd-46b8-8141-729b31e9806e.jpg"),
     alt: "Bornfree lifestyle photography",
     source: "bornfree",
-  },
-  workScale: {
-    src: u("1441984904996-e0b6ba687e04", 1100),
-    alt: "Retail space — scaling creativity",
-    source: "unsplash",
   },
 
   /* ————— Process strip ————— */
   processResearch: {
     src: u("1512436991641-6745cdb1723f", 800),
-    alt: "Moodboard research",
+    alt: "Moodboard and measurement research",
     source: "unsplash",
   },
   processSketch: {
@@ -112,62 +107,62 @@ export const images = {
   },
   processFabric: {
     src: u("1618354691373-d851c5c3a990", 800),
-    alt: "Fabric selection",
+    alt: "Cotton twill selection",
     source: "unsplash",
   },
   processSampling: {
-    src: u("1605518216938-7c31b7b14ad0", 800),
-    alt: "Sampling at the machine",
-    source: "unsplash",
+    src: bf("13-06-2026--caio_jardel03670.jpg", 800),
+    alt: "Bornfree sample — drawstring jogger",
+    source: "bornfree",
   },
   processIteration: {
-    src: u("1556905055-8f358a7a47b2", 800),
-    alt: "Iterating on garments",
-    source: "unsplash",
+    src: bf("10645-FULL-dark-green.jpg", 800),
+    alt: "Fit iteration on the dark green jogger",
+    source: "bornfree",
   },
   processLaunch: {
-    src: u("1441984904996-e0b6ba687e04", 800),
-    alt: "Collection launch",
-    source: "unsplash",
+    src: bf("002A5603_copy.jpg", 800),
+    alt: "Campaign day — navy cargos on location",
+    source: "bornfree",
   },
 
-  /* ————— Gallery (masonry) ————— */
+  /* ————— Gallery (broken grid) ————— */
   gallery: [
-    { src: u("1490481651871-ab68de25d43d", 900), alt: "Editorial fashion portrait", source: "unsplash" },
-    { src: bf("13-06-2026--caio_jardel02430.jpg?v=1783493674&width=1100"), alt: "Bornfree campaign", source: "bornfree" },
-    { src: u("1445205170230-053b83016050", 900), alt: "Garment rail", source: "unsplash" },
-    { src: u("1537832816519-689ad163238b", 900), alt: "Editorial look", source: "unsplash" },
-    { src: u("1618354691373-d851c5c3a990", 900), alt: "Fabric close-up", source: "unsplash" },
-    { src: u("1591047139829-d91aecb6caea", 900), alt: "Coat editorial", source: "unsplash" },
-    { src: bf("10282-left-navy.jpg?v=1776752257&width=1100"), alt: "Bornfree navy piece", source: "bornfree" },
-    { src: u("1495385794356-15371f348c31", 900), alt: "Studio lifestyle", source: "unsplash" },
-    { src: u("1487222477894-8943e31ef7b2", 900), alt: "Dresses hanging", source: "unsplash" },
+    { src: bf("002A5601_copy.jpg", 900), alt: "Navy cargos, white shirt — location campaign", source: "bornfree" },
+    { src: bf("13-06-2026--caio_jardel02430.jpg", 900), alt: "Bornfree campaign", source: "bornfree" },
+    { src: bf("30-06-2025_mathews0561_1_2114edae-456f-48b1-9eed-88a7ce88b7df.jpg", 900), alt: "Studio editorial — olive cargos", source: "bornfree" },
+    { src: bf("13-06-2026--caio_jardel03670.jpg", 900), alt: "Khaki jogger — drawstring detail", source: "bornfree" },
+    { src: bf("6full.jpg", 900), alt: "Ice-blue cargos with denim jacket", source: "bornfree" },
+    { src: bf("30-06-2025-mathews00031_1.jpg", 900), alt: "Printed shorts — summer line", source: "bornfree" },
+    { src: bf("10282-left-navy.jpg", 900), alt: "Navy piece — studio", source: "bornfree" },
+    { src: bf("30-06-2025_mathews0522_1.jpg", 900), alt: "Olive cargo shorts — pocket detail", source: "bornfree" },
+    { src: bf("13-06-2026--caio_jardel02435.jpg", 900), alt: "Indigo cargos in motion", source: "bornfree" },
   ] as Img[],
 
   /* ————— Behind the brand ————— */
   behindMovement: {
-    src: u("1529139574466-a303027c1d8b", 1000),
-    alt: "Everyday movement",
-    source: "unsplash",
+    src: bf("13-06-2026--caio_jardel02435.jpg", 1000),
+    alt: "Mid-stride — Freedom of Body",
+    source: "bornfree",
   },
   behindComfort: {
-    src: u("1521572163474-6864f9cf17ab", 1000),
-    alt: "Comfort as luxury",
-    source: "unsplash",
+    src: bf("13-06-2026--caio_jardel03671.jpg", 1000),
+    alt: "Softness you can see — special-wash khaki",
+    source: "bornfree",
   },
   behindConfidence: {
-    src: u("1469334031218-e382a71b716b", 1000),
-    alt: "Design disappearing into confidence",
-    source: "unsplash",
+    src: bf("6full.jpg", 1000),
+    alt: "Worn like it's nothing — ice-blue cargos",
+    source: "bornfree",
   },
 
   /* ————— Instagram-style feed ————— */
   feed: [
-    { src: u("1469334031218-e382a71b716b", 700), alt: "Feed — editorial look", source: "unsplash" },
-    { src: u("1584917865442-de89df76afd3", 700), alt: "Feed — accessories", source: "unsplash" },
-    { src: bf("002A5402_235ff6b6-69dd-46b8-8141-729b31e9806e.jpg?v=1773134508&width=1100"), alt: "Feed — Bornfree lifestyle", source: "bornfree" },
-    { src: u("1620799140408-edc6dcb6d633", 700), alt: "Feed — garment production", source: "unsplash" },
-    { src: u("1515886657613-9f3515b0c78f", 700), alt: "Feed — portrait", source: "unsplash" },
-    { src: bf("10435-MEDIUM_OLIVE-LEFT-Photoroom_2ec30766-9bd1-408e-bc31-e04b791812bb.jpg?v=1775736354&width=1100"), alt: "Feed — Bornfree olive", source: "bornfree" },
+    { src: bf("002A5603_copy.jpg", 700), alt: "Feed — navy cargos on location", source: "bornfree" },
+    { src: bf("30-06-2025_mathews0522_1.jpg", 700), alt: "Feed — olive cargo shorts", source: "bornfree" },
+    { src: bf("002A5402_235ff6b6-69dd-46b8-8141-729b31e9806e.jpg", 700), alt: "Feed — Bornfree lifestyle", source: "bornfree" },
+    { src: bf("30-06-2025-mathews00035_1.jpg", 700), alt: "Feed — printed summer shorts", source: "bornfree" },
+    { src: bf("10645-FULL-dark-green.jpg", 700), alt: "Feed — dark green joggers", source: "bornfree" },
+    { src: bf("10435-MEDIUM_OLIVE-LEFT-Photoroom_2ec30766-9bd1-408e-bc31-e04b791812bb.jpg", 700), alt: "Feed — olive fit", source: "bornfree" },
   ] as Img[],
 } as const;

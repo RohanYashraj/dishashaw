@@ -18,7 +18,7 @@ export default function InstaFeed() {
             rel="noreferrer"
             className="link-underline label text-charcoal/70"
           >
-            @bornfreefashions
+            @bornfree__india
           </a>
         </div>
 

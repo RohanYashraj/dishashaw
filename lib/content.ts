@@ -1,6 +1,10 @@
 /**
- * All site copy lives here — placeholder founder copy written in Disha's voice.
- * Swap facts (dates, numbers, quotes, press names) with real ones when available.
+ * All site copy lives here — written in Disha's founder voice around the real
+ * Bornfree Fashions story: 20+ years of men's bottomwear manufacturing in
+ * Kolkata, the "Freedom of Body" philosophy, 25+ quality checks, special-wash
+ * softness, 500+ people across three solar-powered units, fits cut for the
+ * Indian body. Swap any remaining invented details (dates, quotes, names)
+ * with confirmed ones when available.
  */
 
 export const site = {
@@ -10,17 +14,23 @@ export const site = {
   brandUrl: "https://bornfreefashions.com",
   email: "hello@dishashaw.com", // placeholder
   socials: [
-    { label: "Instagram", href: "https://instagram.com/bornfreefashions" },
+    { label: "Instagram", href: "https://www.instagram.com/bornfree__india/" },
     { label: "LinkedIn", href: "https://linkedin.com" },
     { label: "Bornfree", href: "https://bornfreefashions.com" },
   ],
 };
 
 export const hero = {
-  eyebrow: "Founder · Creative Director · Bornfree Fashions",
-  line1: "I don't just build clothes.",
-  line2: "I build stories people wear.",
-  sub: "Designing freedom, one collection at a time — from a single sketchbook to a brand worn across India.",
+  eyebrow: "Disha Shaw",
+  /** style: "serif" renders as italic editorial serif in ember */
+  lines: [
+    { text: "Designing", style: "sans" },
+    { text: "Freedom.", style: "serif" },
+    { text: "One Collection", style: "sans" },
+    { text: "at a Time.", style: "sans" },
+  ] as { text: string; style: "sans" | "serif" }[],
+  roles: ["Founder", "Creative Director", "Dreamer"],
+  sub: "I lead Bornfree — men's bottomwear made in Kolkata, cut for the Indian body, and built on one belief: Freedom of Body.",
   ctaPrimary: { label: "Explore my journey", href: "#story" },
   ctaSecondary: { label: "See the work", href: "#work" },
 };
@@ -29,35 +39,35 @@ export const about = {
   roles: [
     "Founder",
     "Creative Director",
-    "Entrepreneur",
-    "Product Visionary",
+    "Manufacturer's Daughter",
+    "Fit Obsessive",
     "Brand Builder",
-    "Creative Strategist",
+    "Factory-Floor Designer",
   ],
   story: [
-    "Before Bornfree had a name, it had a feeling — the moment a garment stops being fabric and starts being confidence. I grew up around textiles, watching cloth move through hands that knew exactly what they were doing, and I never stopped chasing that quiet magic.",
-    "Bornfree Fashions began as a refusal: a refusal to accept that comfort and beauty had to live in separate wardrobes. Every collection since has been an argument for both — precision craftsmanship, honest fabrics, and silhouettes that let people move through their lives freely.",
-    "Today I lead design, product and brand at Bornfree. But my favourite place is still the sampling table, where an idea becomes a thing you can hold.",
+    "Bornfree didn't start in a boardroom. It started on a factory floor in Kolkata, in the rhythm of five hundred sewing machines — a sound I grew up inside. For over twenty years this house has made one thing, and made it seriously: men's bottomwear. Cargos, joggers, Bermudas, shorts. Nothing else.",
+    "That focus is the entire design philosophy. When you make only bottomwear, you learn things generalists never will — how a waistband should sit through a Kolkata summer, where a pocket earns its place, why the Indian body deserves its own fit charts instead of borrowed ones. We call the result Freedom of Body: clothing that never asks you to adjust.",
+    "My work is carrying that manufacturing legacy forward as a brand — taking garments that pass twenty-five quality checks and a softening wash before they earn the label, and putting them directly into the hands of the men they were measured for.",
   ],
   timeline: [
-    { year: "2016", title: "The first sketchbook", text: "Filled three notebooks with silhouettes before touching a single metre of fabric." },
-    { year: "2018", title: "Bornfree is born", text: "Registered the brand with one machine, one tailor, and an unreasonable amount of conviction." },
-    { year: "2019", title: "First collection sells out", text: "A small run of comfort-first essentials disappears in eleven days." },
-    { year: "2021", title: "Going online", text: "bornfreefashions.com launches, taking the brand from local racks to doorsteps across India." },
-    { year: "2023", title: "50,000 customers", text: "The community outgrows every projection — and every warehouse we'd planned for." },
-    { year: "2025", title: "The next chapter", text: "Expanding the design studio and building Bornfree into a house of comfort-led lines." },
+    { year: "2003", title: "The first floor", text: "A small unit in Kolkata starts stitching men's shorts — the beginning of a single-minded house." },
+    { year: "2009", title: "The Bermuda years", text: "Bornfree Bermudas earn a reputation across eastern India. Retailers reorder before the season ends." },
+    { year: "2015", title: "Three units, 500 people", text: "The house grows into three manufacturing units — later powered by the sun, with water treated on site." },
+    { year: "2019", title: "The fit project", text: "We begin building our own measurement data — real Indian bodies, not imported size charts." },
+    { year: "2022", title: "Factory to front door", text: "bornfreefashions.com launches. Twenty years of craft finally speaks directly to the wearer." },
+    { year: "2025", title: "Freedom of Body", text: "The philosophy becomes the brand — campaigns, community, and a design language of ease." },
   ],
 };
 
 export const philosophy = {
   intro: "Why Bornfree exists",
-  statement: "Clothing should set people free — free to move, to work, to rest, to be entirely themselves.",
+  statement: "Freedom of Body — clothing should move the way you do, never the other way around.",
   pillars: [
-    { word: "Freedom", text: "Every silhouette starts with a question: can you live your whole day in this?", imageKey: "philosophyFreedom" },
-    { word: "Craftsmanship", text: "Precision stitching, honest construction, details nobody sees but everybody feels.", imageKey: "philosophyCraft" },
-    { word: "Comfort", text: "Comfort is not the absence of style. It is the highest form of it.", imageKey: "philosophyComfort" },
-    { word: "Authenticity", text: "We make what we believe in, at the pace belief requires.", imageKey: "philosophyAuthenticity" },
-    { word: "Longevity", text: "Designed to be worn for years, not seasons. Loved, not landfilled.", imageKey: "philosophyLongevity" },
+    { word: "Freedom", text: "Our founding idea. If you have to adjust it, tug it, or think about it — we haven't finished designing it.", imageKey: "philosophyFreedom" },
+    { word: "Craftsmanship", text: "Every pair survives more than twenty-five quality checks before it earns the label. Details nobody sees, everybody feels.", imageKey: "philosophyCraft" },
+    { word: "Comfort", text: "A special softening wash before anything ships. Comfort here is engineered, not promised.", imageKey: "philosophyComfort" },
+    { word: "Authenticity", text: "Cut for the Indian body — fit charts built from real measurements of real men, not borrowed from another continent.", imageKey: "philosophyAuthenticity" },
+    { word: "Longevity", text: "Made in our own units by people we know, to survive years of everydays. Loved, not landfilled.", imageKey: "philosophyLongevity" },
   ],
 };
 
@@ -78,126 +88,126 @@ export const work: CaseStudy[] = [
     slug: "building-bornfree",
     index: "01",
     title: "Building Bornfree",
-    category: "Brand Identity",
-    year: "2018 — ongoing",
+    category: "Brand & Identity",
+    year: "2003 — ongoing",
     imageKey: "workBrand",
-    intro: "How a one-tailor operation became a brand with a point of view — the identity, voice and world of Bornfree.",
+    intro: "Turning twenty years of quiet manufacturing excellence into a brand men ask for by name.",
     body: [
-      "A brand is a promise repeated until people believe it. For Bornfree, the promise was simple: clothes that feel like freedom. The identity had to carry that promise everywhere — from the stitch on a waistband to the tone of a delivery message.",
-      "We built the brand around warmth rather than hype. Earthy colour, honest photography, and language that speaks like a person, not a catalogue. Every touchpoint was designed to feel like the garment itself: relaxed, considered, quietly confident.",
-      "The result is a brand people describe in emotional words — comfortable, dependable, mine — which is the only brand test that matters.",
+      "For two decades, Bornfree's craft lived anonymously — beautifully made bottomwear sold through other people's shelves. The garments had a reputation. The name didn't. My job was to close that gap.",
+      "We built the brand the way the factory builds a garment: from the inside out. Freedom of Body — the idea that clothing should never ask you to adjust — became the voice, the photography, the campaign language. Earthy, unhurried, worn by real builds in real light.",
+      "A brand is a promise repeated until people believe it. Ours was easy to keep, because the factory had been keeping it for twenty years before anyone was watching.",
     ],
-    quote: "A brand is a promise repeated until people believe it.",
+    quote: "The factory kept the promise for twenty years before anyone was watching.",
   },
   {
-    slug: "sketch-to-production",
+    slug: "the-cargo-rebuilt",
     index: "02",
-    title: "From Sketch to Production",
-    category: "Product Development",
-    year: "2019 — ongoing",
-    imageKey: "workSketch",
-    intro: "The unglamorous, beautiful pipeline that turns a pencil line into a garment on a doorstep.",
+    title: "The Cargo, Rebuilt",
+    category: "Product Design",
+    year: "2023 — ongoing",
+    imageKey: "workCargo",
+    intro: "Deconstructing menswear's most abused silhouette — and rebuilding it pocket by pocket.",
     body: [
-      "Every Bornfree piece begins as a drawing and survives a gauntlet: fabric trials, fit sessions, stress tests, and the honest opinions of people who don't care about my feelings.",
-      "I designed our production process around iteration. A style isn't approved until it has been worn — really worn — through commutes, workdays and long evenings. If it wrinkles wrong, pulls wrong, or sits wrong, it goes back.",
-      "This discipline is slow and worth it. Our return rates stay low because the garment was finished before it was launched, not after.",
+      "The cargo is where lazy design goes to hide: pockets stitched on as decoration, bulk mistaken for utility. We started over. Every pocket on a Bornfree cargo had to justify its position against a simple test — what do Indian men actually carry, and where do their hands actually go?",
+      "The answers redrew the garment. Phone pockets angled for a seated commute. Flaps that stay flat under a kurta or a tee. Volume balanced so the leg drapes instead of ballooning.",
+      "The result is our best-selling line — a cargo that works as hard as the men wearing it, and looks like it never tried.",
     ],
-    quote: "A style isn't approved until it has been worn — really worn.",
+    quote: "Every pocket has to justify its position.",
   },
   {
-    slug: "design-process",
+    slug: "fit-for-the-indian-body",
     index: "03",
-    title: "The Design Process",
-    category: "Creative Direction",
-    year: "Studio practice",
-    imageKey: "workProcess",
-    intro: "Inside the studio ritual — research, moodboards, fabric libraries and the discipline of subtraction.",
-    body: [
-      "My process is mostly subtraction. The first draft of anything has too much: too many seams, too many features, too much noise. The work is removing everything the wearer doesn't need until only intention remains.",
-      "Research starts with people, not runways. We study how customers actually live — what they carry, how they sit, when they're too warm — and design backwards from those truths.",
-      "The fabric library is the heart of the studio. Before a silhouette is drawn, the hand-feel is chosen. Fabric first, always.",
-    ],
-    quote: "The work is removing everything the wearer doesn't need.",
-  },
-  {
-    slug: "customer-obsession",
-    index: "04",
-    title: "Customer Obsession",
-    category: "Community & Experience",
+    title: "A Fit for the Indian Body",
+    category: "Fit & Pattern",
     year: "2019 — ongoing",
-    imageKey: "workCustomer",
-    intro: "Reading every review, answering the hard messages, and letting customers co-author the product line.",
+    imageKey: "workFit",
+    intro: "Why we threw away imported size charts and built our own — one measurement at a time.",
     body: [
-      "In the early days I answered every customer message personally. As we grew, I refused to lose that — the inbox is still the best design brief we have.",
-      "Multiple bestsellers began as complaints. A pocket in the wrong place, a waistband that rolled, a length that almost worked. Customers tell you exactly what to build if you're humble enough to listen.",
-      "We measure success in repeat customers and in the messages that say some version of: these are the only ones I wear now.",
+      "Most menswear in India is graded from Western blocks: longer rises, narrower seats, proportions borrowed from bodies that aren't ours. Wear one and you feel it — not wrong enough to return, never right enough to forget.",
+      "So we built our own data. Thousands of measurements across ages and builds, turned into fit blocks that respect how Indian men are actually shaped and how they actually sit, squat, ride and work.",
+      "It's invisible work — nobody photographs a rise curve. But it's why the review we get most often is some version of: finally, something that just fits.",
     ],
-    quote: "The inbox is still the best design brief we have.",
+    quote: "Nobody photographs a rise curve. Everybody feels it.",
   },
   {
-    slug: "scaling-creativity",
-    index: "05",
-    title: "Scaling Creativity",
-    category: "Founder Story",
-    year: "2021 — ongoing",
-    imageKey: "workScale",
-    intro: "Growing from a founder's hands to a studio system — without letting the soul dilute.",
+    slug: "twenty-five-checks",
+    index: "04",
+    title: "Twenty-Five Checks",
+    category: "Craft & Quality",
+    year: "Studio practice",
+    imageKey: "workQuality",
+    intro: "Inside the quality ritual every single garment survives before it earns the Bornfree label.",
     body: [
-      "The hardest design problem I've solved isn't a garment. It's a company that can create without me in every room.",
-      "We scaled by writing taste down: fit standards, fabric standards, photography rules, tone of voice. Creativity scales when judgment becomes shared language instead of one person's instinct.",
-      "The studio now ships more than I ever could alone — and the work still feels like Bornfree. That's the whole game.",
+      "Twenty-five checks sounds like marketing until you stand on the floor and watch it happen: seam strength, stitch density, waistband recovery, pocket bartacks, shade matching, shrinkage after the wash — a garment interrogated at every station it passes.",
+      "Then comes the special wash. Every piece is softened before it ships, so the first wear feels like the fiftieth. Comfort out of the packet is a manufacturing decision, not an accident.",
+      "This discipline is slow, and it's the whole brand. Our garments are finished before launch — not after, by customer complaint.",
     ],
-    quote: "Creativity scales when judgment becomes shared language.",
+    quote: "Finished before launch — not after, by customer complaint.",
+  },
+  {
+    slug: "factory-to-front-door",
+    index: "05",
+    title: "Factory to Front Door",
+    category: "Direct to Consumer",
+    year: "2022 — ongoing",
+    imageKey: "workD2C",
+    intro: "Removing every middle layer between three factories in Kolkata and the men who wear the work.",
+    body: [
+      "Going direct wasn't a distribution decision — it was a design one. Every layer between the factory and the wearer dilutes something: the price, the story, the feedback. Remove the layers and the maker finally hears the wearer clearly.",
+      "Now the inbox is our best design brief. A pocket in the wrong place, a length that almost works — customers tell you exactly what to build if you're humble enough to listen. Several bestsellers began life as complaints.",
+      "And because our own units make everything, a suggestion can become a sample in days. That loop — wearer to factory floor and back — is the most valuable thing we've ever built.",
+    ],
+    quote: "The inbox is the best design brief we have.",
   },
 ];
 
 export const process = {
   title: "The Creative Process",
   steps: [
-    { label: "Research", text: "People first. Runways later, if ever.", imageKey: "processResearch" },
-    { label: "Sketch", text: "Draw fast, decide slow.", imageKey: "processSketch" },
-    { label: "Fabric", text: "Hand-feel is chosen before the silhouette.", imageKey: "processFabric" },
+    { label: "Research", text: "Fits begin with bodies. Real measurements, real routines.", imageKey: "processResearch" },
+    { label: "Sketch", text: "Draw fast, decide slow. Every pocket must argue for itself.", imageKey: "processSketch" },
+    { label: "Fabric", text: "Cotton chosen by hand-feel and climate, not season names.", imageKey: "processFabric" },
     { label: "Sampling", text: "The first sample is always wrong. That's the point.", imageKey: "processSampling" },
-    { label: "Iteration", text: "Worn, washed, judged, revised. Repeat.", imageKey: "processIteration" },
-    { label: "Launch", text: "Only when it's finished. Not when it's due.", imageKey: "processLaunch" },
+    { label: "Iteration", text: "Worn, washed, squatted in, revised. Repeat.", imageKey: "processIteration" },
+    { label: "Launch", text: "Only after twenty-five checks and a softening wash.", imageKey: "processLaunch" },
   ],
 };
 
 export const behind = {
   quotes: [
-    { text: "Inspiration comes from everyday movement.", sub: "Collections begin on train platforms, in kitchens, on long walks — wherever real bodies move through real days.", imageKey: "behindMovement" },
-    { text: "I believe comfort is a luxury.", sub: "The most expensive feeling in the world is being completely at ease. We manufacture that feeling.", imageKey: "behindComfort" },
-    { text: "Design should disappear into confidence.", sub: "When the garment is right, you stop thinking about it. What remains is you, amplified.", imageKey: "behindConfidence" },
+    { text: "Freedom of Body isn't a slogan. It's a spec.", sub: "Every fit decision traces back to one test: can you forget you're wearing it? Through a commute, a workday, a long evening on the floor with the kids.", imageKey: "behindMovement" },
+    { text: "I believe comfort is a luxury.", sub: "The most expensive feeling in the world is being completely at ease. We manufacture that feeling — and soften it in the wash before it ships.", imageKey: "behindComfort" },
+    { text: "We make bottomwear. Only bottomwear.", sub: "Twenty years on one garment family teaches you what generalists never learn. The focus is the design.", imageKey: "behindConfidence" },
   ],
 };
 
 export const numbers = [
-  { value: 10, suffix: "+", label: "Collections" },
-  { value: 50, suffix: "K+", label: "Customers" },
-  { value: 100, suffix: "+", label: "Products" },
-  { value: 1000, suffix: "+", label: "Happy stories" },
+  { value: 20, suffix: "+", label: "Years of craft" },
+  { value: 500, suffix: "+", label: "Craftspeople" },
+  { value: 25, suffix: "+", label: "Checks per garment" },
+  { value: 3, suffix: "", label: "Solar-powered units" },
 ];
 
 export const testimonials = [
   {
-    quote: "The rare brand where the tenth purchase feels as considered as the first. You can tell a designer is still reading every review.",
-    name: "A. Mehta",
-    role: "Customer since 2019",
+    quote: "The only cargos I've owned where the waistband doesn't fold by evening. You can tell somebody measured real people.",
+    name: "A. Banerjee",
+    role: "Customer since 2022",
   },
   {
-    quote: "Disha thinks about garments the way architects think about buildings — how people will live inside them.",
-    name: "R. Kapoor",
-    role: "Textile partner",
+    quote: "Bornfree understands the Indian build better than brands ten times their size. Their fits reorder themselves.",
+    name: "R. Agarwal",
+    role: "Menswear retailer, 14 years",
   },
   {
-    quote: "Working with Bornfree changed how our unit thinks about quality. She raised the bar for everyone in the room.",
+    quote: "Their floor runs with a pride you rarely see. Every pair is checked like it's the first one they ever made.",
     name: "S. Iyer",
-    role: "Production partner",
+    role: "Fabric mill partner",
   },
 ];
 
 /** Placeholder press names — replace with real features when available. */
-export const press = ["VOGUE INDIA", "ELLE", "GQ", "GRAZIA", "HARPER'S BAZAAR", "COSMOPOLITAN"];
+export const press = ["GQ INDIA", "MAN'S WORLD", "MENSXP", "YOURSTORY", "TEXTILE VALUE CHAIN", "ECONOMIC TIMES"];
 
 export type JournalPost = {
   slug: string;
@@ -209,53 +219,53 @@ export type JournalPost = {
 
 export const journal: JournalPost[] = [
   {
-    slug: "lessons-from-building",
+    slug: "why-only-bottomwear",
     date: "March 2026",
-    title: "Lessons from Building a Fashion Brand",
-    excerpt: "Seven years in — the mistakes I'd repeat and the ones I wouldn't.",
+    title: "Why We Only Make Bottomwear",
+    excerpt: "Focus looks like a limitation until you see what it compounds into.",
     body: [
-      "Nobody tells you that building a fashion brand is mostly logistics wearing a beautiful coat. The sketches are five percent. The other ninety-five is fabric ledgers, fit sessions, courier disputes and the slow work of earning trust one parcel at a time.",
-      "If I could send one note back to 2018, it would say: your taste is the business. Protect the hours where you actually design. Everything else can be shared, delegated or postponed — judgment can't.",
-      "And keep the first sketchbook. On hard days it reminds you the whole company was once a drawing that refused to stay on paper.",
+      "People ask when Bornfree will do shirts. The honest answer: hopefully never. Twenty years on one garment family — cargos, joggers, Bermudas, shorts — has compounded into knowledge you cannot rush. We know how a waistband behaves in week one and in year three. We know which pocket angles survive a scooter commute.",
+      "Every category you add divides that attention. Every category you refuse deepens it. Our masterjis have sewn tens of thousands of the same seams — and it shows in the seam.",
+      "Focus is the least glamorous strategy in fashion and the most honest one. We'd rather be the best in the country at half the wardrobe than forgettable at all of it.",
     ],
   },
   {
-    slug: "designing-for-comfort",
+    slug: "twenty-five-checks-diary",
     date: "January 2026",
-    title: "How I Design for Comfort",
-    excerpt: "Comfort is engineering. Here's the checklist behind the feeling.",
+    title: "A Day on the Quality Line",
+    excerpt: "What twenty-five checks actually look like from the factory floor.",
     body: [
-      "Comfort has a reputation for being vague — a feeling you either get or don't. In the studio it's the opposite: a checklist of measurable decisions. Seam placement against the body's bend lines. Fabric weight matched to climate, not season names invented in colder countries.",
-      "My rule: if a wearer notices the garment twice in a day, we've failed. Once when they put it on, delighted. Never again until they take it off.",
-      "The irony of designing for comfort is how uncomfortable the process is — hundreds of rejected samples for every one that ships. That's the trade, and it's worth it.",
+      "Check eleven is my favourite: waistband recovery. A machine stretches the waistband a few hundred times and measures whether it returns home. Most brands never test it. It's why their garments loosen into shapelessness by the third month.",
+      "The line isn't glamorous — chalk marks, calibrated pull-tests, a wash log thicker than a novel. But watch a pair fail at check nineteen and go back, and you understand the label differently.",
+      "Quality isn't a department here. It's twenty-five small refusals to let something slide.",
     ],
   },
   {
-    slug: "behind-every-collection",
+    slug: "designing-for-the-indian-body",
     date: "November 2025",
-    title: "Behind Every Collection",
-    excerpt: "A collection is an argument. Here's how ours get made.",
+    title: "Designing for the Indian Body",
+    excerpt: "Borrowed size charts fit nobody. So we built our own.",
     body: [
-      "Every collection starts with a sentence, not a sketch. One line that the whole range has to defend. If a piece doesn't argue for the sentence, it doesn't ship — no matter how beautiful it is.",
-      "The moodboard stage is sacred and slightly chaotic: fabric swatches taped over photographs, handwritten notes, colours pulled from streets and kitchens rather than trend reports.",
-      "By the time a collection launches, it's survived forty arguments. What you see online is the peace treaty.",
+      "The dirty secret of Indian menswear is that most of it is graded from Western fit blocks. The proportions — rise, seat, thigh — belong to somebody else's average. Wear it and you feel the borrowedness all day without being able to name it.",
+      "We spent years building our own measurement data instead: real men, real builds, real postures. How Indians actually sit — cross-legged, on haunches, side-saddle on a bike. The fit block that came out of it looks unremarkable on paper and feels unmistakable on the body.",
+      "The best compliment we get is silence — a man who put them on in the morning and didn't think about them again.",
     ],
   },
   {
-    slug: "why-details-matter",
+    slug: "a-factory-that-runs-on-sunlight",
     date: "September 2025",
-    title: "Why Details Matter",
-    excerpt: "The stitch nobody sees is the one that defines you.",
+    title: "A Factory That Runs on Sunlight",
+    excerpt: "Three units, five hundred people, solar on the roof and treated water below.",
     body: [
-      "There's a bartack inside every Bornfree waistband that costs us real money and that no customer will ever consciously notice. We keep it because garments communicate below the threshold of attention — things feel cheap or feel right long before anyone can say why.",
-      "Details are also a message to the team: this is who we are when nobody's checking. Cut that corner and a hundred invisible corners follow.",
-      "Luxury, to me, was never the logo. It's the sum of decisions made carefully in places nobody looks.",
+      "Sustainability in fashion is usually a hangtag. Ours is a roof. The three units that make every Bornfree garment run on solar power, and the water from our wash processes is treated on site before it leaves.",
+      "The same philosophy applies to the five hundred people inside. Fair employment isn't a certification we chase — it's the only way a floor produces work with pride in it. You can genuinely see the difference in a seam.",
+      "We build garments meant to last years. It would be absurd to build them in a way the neighbourhood can't live with.",
     ],
   },
 ];
 
 export const contact = {
   title: "Let's create something beautiful.",
-  sub: "For collaborations, press, speaking, or a conversation about building things with soul.",
+  sub: "For collaborations, retail partnerships, press, or a conversation about building brands with soul — and seams that hold.",
   cta: "Write to me",
 };

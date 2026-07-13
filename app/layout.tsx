@@ -26,11 +26,11 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   title: "Disha Shaw — Founder & Creative Director, Bornfree Fashions",
   description:
-    "The online home of Disha Shaw, founder and creative director of Bornfree Fashions. Designing freedom, one collection at a time.",
+    "The online home of Disha Shaw, founder and creative director of Bornfree Fashions — men's bottomwear made in Kolkata, built on the philosophy of Freedom of Body.",
   openGraph: {
     title: "Disha Shaw — Founder & Creative Director",
     description:
-      "Fashion with purpose, crafted with soul. The portfolio of the founder behind Bornfree Fashions.",
+      "Twenty years of craft, one belief: Freedom of Body. The portfolio of the founder behind Bornfree Fashions.",
     type: "website",
   },
 };
