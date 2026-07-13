@@ -98,7 +98,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 80 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.9, duration: 1.3, ease: EASE }}
-        className="pointer-events-none relative z-0 ml-auto mt-auto w-[min(94vw,36rem)] lg:absolute lg:bottom-0 lg:right-0 lg:mt-0 lg:h-[min(88svh,60rem)] lg:w-[58vw]"
+        className="pointer-events-none relative z-0 ml-auto mt-auto w-[min(94vw,36rem)] lg:absolute lg:bottom-0 lg:right-0 lg:mt-0 lg:h-[min(92svh,64rem)] lg:w-[68vw]"
       >
         <Image
           src={images.heroPortrait.src}

@@ -31,7 +31,7 @@ export default function MagneticButton({ href, children, variant = "solid", clas
 
   const styles = {
     solid: "bg-ink text-ivory hover:bg-ember",
-    outline: "border border-ink/30 text-ink hover:border-ember hover:text-ember",
+    outline: "border border-ink/30 bg-ivory/85 text-ink backdrop-blur-sm hover:border-ember hover:text-ember",
     ghost: "text-ivory border border-ivory/40 hover:bg-ivory hover:text-ink",
   }[variant];
 
