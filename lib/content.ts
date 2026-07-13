@@ -30,7 +30,7 @@ export const hero = {
     { text: "at a Time.", style: "sans" },
   ] as { text: string; style: "sans" | "serif" }[],
   roles: ["Founder", "Creative Director", "Dreamer"],
-  sub: "I lead Bornfree — men's bottomwear made in Kolkata, cut for the Indian body, and built on one belief: Freedom of Body.",
+  sub: "I am a D2C founder of the brand Bornfree — men's bottomwear made in Kolkata, cut for the Indian body, and built on one belief: Freedom of Body.",
   ctaPrimary: { label: "Explore my journey", href: "#story" },
   ctaSecondary: { label: "See the work", href: "#work" },
 };

@@ -45,7 +45,9 @@ export default function Gallery() {
           </TextReveal>
         </h2>
 
-        <div className="mt-20 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-12 md:gap-8">
+        {/* items-start: without it, grid stretches every polaroid to the row's
+            tallest tile and the extra height shows as empty white frame */}
+        <div className="mt-20 grid grid-cols-1 items-start gap-6 sm:grid-cols-2 md:grid-cols-12 md:gap-8">
           {images.gallery.map((img, i) => {
             const l = LAYOUT[i % LAYOUT.length];
             return (
