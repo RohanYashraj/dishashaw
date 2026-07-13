@@ -7,6 +7,7 @@ import Cursor from "@/components/ui/Cursor";
 import Preloader from "@/components/ui/Preloader";
 import FloatingNav from "@/components/nav/FloatingNav";
 import ScrollProgress from "@/components/nav/ScrollProgress";
+import { Analytics } from "@vercel/analytics/next"
 
 const clash = localFont({
   src: "../public/fonts/ClashDisplay-Variable.woff2",
@@ -54,6 +55,7 @@ export default function RootLayout({
           <ScrollProgress />
           <FloatingNav />
           <Cursor />
+          <Analytics />
           {children}
         </LenisProvider>
       </body>

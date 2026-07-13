@@ -96,18 +96,18 @@ export const images = {
 
   /* ————— Process strip ————— */
   processResearch: {
-    src: u("1512436991641-6745cdb1723f", 800),
-    alt: "Moodboard and measurement research",
+    src: u("1523901839036-a3030662f220", 800),
+    alt: "Tailor's measuring tape — where every fit begins",
     source: "unsplash",
   },
   processSketch: {
-    src: u("1558769132-cb1aea458c5e", 800),
-    alt: "Design sketching",
+    src: u("1557777586-f6682739fcf3", 800),
+    alt: "Fashion illustration sketches pinned on the studio wall",
     source: "unsplash",
   },
   processFabric: {
-    src: u("1618354691373-d851c5c3a990", 800),
-    alt: "Cotton twill selection",
+    src: u("1705250466297-90035b3a2b26", 800),
+    alt: "Rolled bolts of cotton fabric in indigo and blue",
     source: "unsplash",
   },
   processSampling: {

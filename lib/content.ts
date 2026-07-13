@@ -12,10 +12,10 @@ export const site = {
   role: "Founder & Creative Director",
   brand: "Bornfree Fashions",
   brandUrl: "https://bornfreefashions.com",
-  email: "hello@dishashaw.com", // placeholder
+  email: "dishaw14july@gmail.com",
   socials: [
     { label: "Instagram", href: "https://www.instagram.com/bornfree__india/" },
-    { label: "LinkedIn", href: "https://linkedin.com" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/disha-shaw-5637481b8/" },
     { label: "Bornfree", href: "https://bornfreefashions.com" },
   ],
 };

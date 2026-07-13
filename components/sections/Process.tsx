@@ -45,8 +45,10 @@ export default function Process() {
 
   return (
     <section id="process" className="bg-paper">
-      <div ref={sectionRef} className="overflow-hidden">
-        <div className="mx-auto max-w-[110rem] px-6 pt-24 md:px-12 md:pt-32">
+      {/* Pinned block must fit exactly one viewport on desktop, or GSAP's
+          top-top pin crops everything below the fold (incl. step captions). */}
+      <div ref={sectionRef} className="overflow-hidden md:flex md:h-svh md:flex-col">
+        <div className="mx-auto w-full max-w-[110rem] shrink-0 px-6 pt-24 md:px-12">
           <TextReveal className="label text-ember">04 — {process.title}</TextReveal>
           <h2 className="mt-8">
             <TextReveal as="span" className="headline-lg">
@@ -58,13 +60,13 @@ export default function Process() {
 
         <div
           ref={trackRef}
-          className="mt-16 flex flex-col gap-16 px-6 pb-24 md:mt-20 md:w-max md:flex-row md:items-center md:gap-10 md:px-12 md:pb-32"
+          className="mt-16 flex flex-col gap-16 px-6 pb-24 md:mt-0 md:min-h-0 md:w-max md:flex-1 md:flex-row md:items-center md:gap-10 md:px-12 md:pb-6"
         >
           {process.steps.map((step, i) => {
             const img = images[step.imageKey as ImageKey] as { src: string; alt: string };
             return (
               <div key={step.label} className="flex flex-col items-start gap-10 md:flex-row md:items-center">
-                <article className={`w-full max-w-sm shrink-0 md:w-[24rem] ${i % 2 ? "md:mt-24" : "md:-mt-12"}`}>
+                <article className={`w-full max-w-sm shrink-0 md:w-[21rem] ${i % 2 ? "md:mt-14" : "md:-mt-6"}`}>
                   <div className="relative bg-white p-3 pb-14 shadow-md" style={{ rotate: `${(i % 2 ? 1 : -1) * 1.6}deg` }}>
                     <span className="tape -top-3 left-1/2 -translate-x-1/2 -rotate-2" />
                     <div className="zoom-frame relative aspect-[4/3]">

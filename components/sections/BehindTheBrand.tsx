@@ -32,9 +32,13 @@ export default function BehindTheBrand() {
                   <span aria-hidden className="block font-serif-editorial text-8xl leading-none text-ember/60">
                     “
                   </span>
-                  <TextReveal as="p" className="headline-md font-serif-editorial italic font-normal -mt-6">
-                    {q.text}
-                  </TextReveal>
+                  {/* negative margin must sit outside TextReveal's overflow-hidden
+                      mask, or it drags the text past the clip edge */}
+                  <div className="-mt-6">
+                    <TextReveal as="p" className="headline-md font-serif-editorial italic font-normal">
+                      {q.text}
+                    </TextReveal>
+                  </div>
                   <TextReveal as="p" delay={0.15} className="mt-8 max-w-md text-base leading-relaxed text-charcoal/75">
                     {q.sub}
                   </TextReveal>

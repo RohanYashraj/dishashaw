@@ -5,17 +5,26 @@ import { motion } from "motion/react";
 import { images } from "@/lib/images";
 import TextReveal from "@/components/ui/TextReveal";
 
-/* Broken-grid masonry: spans + offsets tuned per slot, polaroid treatment on a few. */
+/*
+ * Editorial polaroid wall: three rows of three on 12 columns. Every tile
+ * gets the same white-frame treatment; each box uses its image's NATIVE
+ * aspect ratio (the Bornfree shots are all 2:3 or 4:5 portrait), so nothing
+ * gets cropped into a shape it wasn't composed for. Row tops align; a gentle
+ * mt stagger and alternating tilt give the pinned-to-the-wall rhythm.
+ */
 const LAYOUT = [
-  { span: "md:col-span-4 md:row-span-2", ratio: "aspect-[3/4]", offset: "" , polaroid: false },
-  { span: "md:col-span-3", ratio: "aspect-square", offset: "md:mt-16", polaroid: true },
-  { span: "md:col-span-5", ratio: "aspect-[4/3]", offset: "", polaroid: false },
-  { span: "md:col-span-3", ratio: "aspect-[3/4]", offset: "md:-mt-24", polaroid: false },
-  { span: "md:col-span-4", ratio: "aspect-square", offset: "md:mt-10", polaroid: false },
-  { span: "md:col-span-5", ratio: "aspect-[3/4]", offset: "md:-mt-16", polaroid: false },
-  { span: "md:col-span-3", ratio: "aspect-square", offset: "md:mt-20", polaroid: true },
-  { span: "md:col-span-4", ratio: "aspect-[4/3]", offset: "", polaroid: false },
-  { span: "md:col-span-4", ratio: "aspect-[3/4]", offset: "md:-mt-12", polaroid: false },
+  // row 1 — location triptych
+  { span: "md:col-span-5", ratio: "aspect-[2/3]", offset: "", tilt: -1.6, tape: true },
+  { span: "md:col-span-3", ratio: "aspect-[2/3]", offset: "md:mt-20", tilt: 2, tape: false },
+  { span: "md:col-span-4", ratio: "aspect-[2/3]", offset: "md:mt-8", tilt: -1, tape: true },
+  // row 2 — detail / lifestyle / print
+  { span: "md:col-span-4", ratio: "aspect-[4/5]", offset: "md:mt-6", tilt: 1.4, tape: true },
+  { span: "md:col-span-4", ratio: "aspect-[2/3]", offset: "", tilt: -2, tape: false },
+  { span: "md:col-span-4", ratio: "aspect-[4/5]", offset: "md:mt-16", tilt: 1, tape: true },
+  // row 3 — studio fits
+  { span: "md:col-span-4", ratio: "aspect-[4/5]", offset: "", tilt: -1.2, tape: false },
+  { span: "md:col-span-4", ratio: "aspect-[4/5]", offset: "md:mt-12", tilt: 1.8, tape: true },
+  { span: "md:col-span-4", ratio: "aspect-[2/3]", offset: "", tilt: -1.5, tape: true },
 ];
 
 export default function Gallery() {
@@ -43,15 +52,15 @@ export default function Gallery() {
               <motion.figure
                 key={`${img.src}-${i}`}
                 initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0, rotate: l.tilt }}
                 viewport={{ once: true, margin: "-6% 0px" }}
                 transition={{ duration: 0.9, delay: (i % 3) * 0.1, ease: [0.65, 0.05, 0, 1] }}
-                className={`group relative ${l.span} ${l.offset} ${
-                  l.polaroid ? "bg-white p-3 pb-12 shadow-md" : ""
-                }`}
-                style={l.polaroid ? { rotate: `${i % 2 ? 2 : -2}deg` } : undefined}
+                style={{ rotate: l.tilt }}
+                className={`group relative bg-white p-3 pb-14 shadow-md transition-shadow duration-500 hover:shadow-xl ${l.span} ${l.offset}`}
               >
-                {l.polaroid && <span className="tape -top-3 left-1/2 -translate-x-1/2 rotate-2" />}
+                {l.tape && (
+                  <span className={`tape -top-3 left-1/2 z-10 -translate-x-1/2 ${i % 2 ? "rotate-3" : "-rotate-2"}`} />
+                )}
                 <div className={`zoom-frame relative w-full ${l.ratio}`}>
                   <Image
                     src={img.src}
@@ -62,13 +71,9 @@ export default function Gallery() {
                   />
                   <span className="absolute inset-0 bg-ink/0 transition-colors duration-500 group-hover:bg-ink/10" />
                 </div>
-                <figcaption
-                  className={`label mt-3 flex justify-between text-stone opacity-0 transition-opacity duration-500 group-hover:opacity-100 ${
-                    l.polaroid ? "absolute bottom-4 left-3 right-3" : ""
-                  }`}
-                >
-                  <span>fig. {String(i + 4).padStart(2, "0")}</span>
-                  <span className="font-serif-editorial text-sm normal-case italic tracking-normal">{img.alt}</span>
+                <figcaption className="absolute bottom-4 left-4 right-4 flex items-baseline justify-between gap-3">
+                  <span className="label whitespace-nowrap text-stone">fig. {String(i + 1).padStart(2, "0")}</span>
+                  <span className="truncate font-serif-editorial text-sm italic text-charcoal/70">{img.alt}</span>
                 </figcaption>
               </motion.figure>
             );
