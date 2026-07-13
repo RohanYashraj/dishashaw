@@ -27,7 +27,7 @@ export default function Hero() {
           <TextReveal delay={1.5} className="label mb-10 text-ink">
             {hero.eyebrow}{" "}
             <span className="text-ember" aria-hidden>
-              ✳
+              ✻
             </span>
           </TextReveal>
 

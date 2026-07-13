@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { ArrowUpRight } from "lucide-react";
 import { site } from "@/lib/content";
 import { useLenis } from "@/lib/lenis";
 
@@ -22,7 +23,7 @@ export default function Footer() {
             <p className="label text-ivory/50">Founder · Creative Director</p>
             <p className="label mt-1 text-ivory/50">
               <a href={site.brandUrl} target="_blank" rel="noreferrer" className="link-underline">
-                {site.brand} ↗
+                {site.brand} <ArrowUpRight aria-hidden className="inline size-[1em] align-[-0.1em]" />
               </a>
             </p>
           </div>
@@ -55,7 +56,7 @@ export default function Footer() {
         <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-ivory/10 pt-6">
           <p className="label text-ivory/40">© {year} Disha Shaw. All stories reserved.</p>
           <p className="label text-ivory/40">
-            <span aria-hidden>✳ </span>Designed like a garment — with care.
+            <span aria-hidden>✻ </span>Designed like a garment — with care.
           </p>
           <p className="label text-ivory/40" aria-hidden>pg. 10 / 10</p>
         </div>

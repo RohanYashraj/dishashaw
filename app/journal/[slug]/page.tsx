@@ -42,7 +42,7 @@ export default async function JournalPage({
 
         <header className="mt-14">
           <p className="label text-ember">
-            <span aria-hidden>✳ </span>
+            <span aria-hidden>✻ </span>
             {post.date} — Founder notes
           </p>
           <h1 className="headline-lg mt-6">{post.title}</h1>

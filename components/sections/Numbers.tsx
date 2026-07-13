@@ -53,7 +53,7 @@ export default function Numbers() {
               <Counter value={n.value} suffix={n.suffix} />
             </span>
             <span className="label flex items-center gap-2 text-charcoal/60">
-              <span aria-hidden className="text-ember">✳</span>
+              <span aria-hidden className="text-ember">✻</span>
               {n.label}
             </span>
           </motion.div>

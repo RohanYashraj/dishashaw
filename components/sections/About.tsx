@@ -34,7 +34,7 @@ export default function About() {
                   className="label flex items-baseline gap-3 text-charcoal/70"
                 >
                   <span className="text-ember" aria-hidden>
-                    ✳
+                    ✻
                   </span>
                   {role}
                 </motion.li>

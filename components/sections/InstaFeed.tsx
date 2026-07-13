@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
+import { ArrowUpRight } from "lucide-react";
 import { images } from "@/lib/images";
 import { site } from "@/lib/content";
 import TextReveal from "@/components/ui/TextReveal";
@@ -43,7 +44,9 @@ export default function InstaFeed() {
                 className="object-cover transition-transform duration-1000 ease-[var(--ease-luxe)] group-hover:scale-110"
               />
               <span className="absolute inset-0 flex items-center justify-center bg-ink/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                <span className="label text-ivory">View ↗</span>
+                <span className="label flex items-center gap-1 text-ivory">
+                  View <ArrowUpRight aria-hidden className="size-4" />
+                </span>
               </span>
             </motion.a>
           ))}

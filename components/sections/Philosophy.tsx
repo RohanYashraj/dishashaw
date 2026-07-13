@@ -81,7 +81,7 @@ export default function Philosophy() {
             </div>
             <p className="label mt-4 flex justify-between text-ivory/50">
               <span>{pillar.word}</span>
-              <span aria-hidden>✳</span>
+              <span aria-hidden>✻</span>
             </p>
           </div>
         </div>

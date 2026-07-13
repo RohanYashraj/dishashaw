@@ -37,7 +37,7 @@ export default function Testimonials() {
             <div className="flex shrink-0 animate-marquee items-center gap-16 pr-16">
               {[...press, ...press].map((p, i) => (
                 <span key={i} className="font-display text-2xl font-medium tracking-wide text-charcoal/30 md:text-3xl">
-                  {p} <span className="text-ember/40">✳</span>
+                  {p} <span className="text-ember/40">✻</span>
                 </span>
               ))}
             </div>
