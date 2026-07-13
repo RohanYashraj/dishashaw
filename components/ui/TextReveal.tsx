@@ -1,0 +1,36 @@
+"use client";
+
+import { motion } from "motion/react";
+
+type Props = {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+  as?: "div" | "h1" | "h2" | "h3" | "p" | "span";
+};
+
+/**
+ * Masked line reveal — content slides up from behind an invisible edge.
+ * The viewport observer lives on the (never-transformed) wrapper: a child that
+ * starts fully outside an overflow-hidden parent never intersects, so
+ * whileInView on the child itself would never fire.
+ */
+export default function TextReveal({ children, delay = 0, className = "", as = "span" }: Props) {
+  const Tag = motion[as];
+  return (
+    <motion.span
+      className="block overflow-hidden"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+    >
+      <Tag
+        variants={{ hidden: { y: "110%" }, visible: { y: 0 } }}
+        transition={{ duration: 1, delay, ease: [0.65, 0.05, 0, 1] }}
+        className={`block ${className}`}
+      >
+        {children}
+      </Tag>
+    </motion.span>
+  );
+}
