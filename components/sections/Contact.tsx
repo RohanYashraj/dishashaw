@@ -1,5 +1,6 @@
 "use client";
 
+import posthog from "posthog-js";
 import { contact, site } from "@/lib/content";
 import TextReveal from "@/components/ui/TextReveal";
 import MagneticButton from "@/components/ui/MagneticButton";
@@ -25,7 +26,16 @@ export default function Contact() {
         </TextReveal>
 
         <div className="mt-14 flex flex-wrap items-center justify-center gap-4">
-          <MagneticButton href={`mailto:${site.email}`} variant="ghost">
+          <MagneticButton
+            href={`mailto:${site.email}`}
+            variant="ghost"
+            onClick={() => {
+              posthog.capture("contact_email_clicked", {
+                contact_method: "email",
+                source_section: "contact",
+              });
+            }}
+          >
             {contact.cta} — {site.email}
           </MagneticButton>
         </div>

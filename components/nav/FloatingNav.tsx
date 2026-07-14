@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import posthog from "posthog-js";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { useLenis } from "@/lib/lenis";
@@ -39,9 +40,15 @@ export default function FloatingNav() {
     return () => observer.disconnect();
   }, [onHome]);
 
-  const go = (e: React.MouseEvent, href: string) => {
+  const go = (e: React.MouseEvent, href: string, label: string) => {
     if (!onHome) return; // let Link navigate to /#section
     e.preventDefault();
+    posthog.capture("navigation_link_clicked", {
+      navigation_label: label,
+      navigation_target: href,
+      location: onHome ? "home" : "detail_page",
+      mobile_menu_open: open,
+    });
     setOpen(false);
     const el = document.getElementById(href.slice(1));
     if (!el) return;
@@ -61,7 +68,7 @@ export default function FloatingNav() {
         <div className="flex items-center gap-1 rounded-full border border-ink/10 bg-ivory/70 px-2 py-2 shadow-[0_8px_30px_rgb(20_19_16/0.06)] backdrop-blur-xl">
           <Link
             href="/#home"
-            onClick={(e) => go(e, "#home")}
+            onClick={(e) => go(e, "#home", "Home")}
             className="px-4 py-1.5 font-display text-sm font-semibold tracking-tight"
           >
             DS<span className="text-ember">.</span>
@@ -71,7 +78,7 @@ export default function FloatingNav() {
               <Link
                 key={href}
                 href={`/${href}`}
-                onClick={(e) => go(e, href)}
+                onClick={(e) => go(e, href, label)}
                 className={`label rounded-full px-4 py-2 transition-all duration-500 hover:tracking-[0.4em] ${
                   active === href.slice(1) && onHome
                     ? "bg-ink text-ivory"
@@ -83,7 +90,15 @@ export default function FloatingNav() {
             ))}
           </div>
           <button
-            onClick={() => setOpen((v) => !v)}
+            onClick={() => {
+              posthog.capture("navigation_link_clicked", {
+                navigation_label: open ? "Close" : "Menu",
+                navigation_target: pathname,
+                location: "mobile_toggle",
+                mobile_menu_open: !open,
+              });
+              setOpen((v) => !v);
+            }}
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
             className="label flex items-center gap-2 rounded-full px-4 py-2 md:hidden"
@@ -111,7 +126,7 @@ export default function FloatingNav() {
               >
                 <Link
                   href={`/${href}`}
-                  onClick={(e) => go(e, href)}
+                  onClick={(e) => go(e, href, label)}
                   className="headline-md block py-2 font-serif-editorial italic"
                 >
                   {label}

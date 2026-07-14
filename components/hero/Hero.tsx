@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import posthog from "posthog-js";
 import { motion } from "motion/react";
 import { hero } from "@/lib/content";
 import { images } from "@/lib/images";
@@ -11,6 +12,14 @@ import ThreadIllustration from "./ThreadIllustration";
 const EASE = [0.65, 0.05, 0, 1] as const;
 
 export default function Hero() {
+  const handleHeroCtaClick = (ctaLabel: string, ctaHref: string) => {
+    posthog.capture("hero_cta_clicked", {
+      cta_label: ctaLabel,
+      cta_href: ctaHref,
+      section: "hero",
+    });
+  };
+
   return (
     <section id="home" className="relative flex min-h-svh flex-col overflow-hidden bg-ivory">
       <ThreadIllustration className="pointer-events-none absolute -right-24 top-10 w-[60vw] max-w-4xl opacity-60" />
@@ -76,8 +85,17 @@ export default function Hero() {
             transition={{ delay: 2.55, duration: 0.8, ease: EASE }}
             className="mt-10 flex flex-wrap items-center gap-4"
           >
-            <MagneticButton href="#story">{hero.ctaPrimary.label} →</MagneticButton>
-            <MagneticButton href="#work" variant="outline">
+            <MagneticButton
+              href="#story"
+              onClick={() => handleHeroCtaClick(hero.ctaPrimary.label, hero.ctaPrimary.href)}
+            >
+              {hero.ctaPrimary.label} →
+            </MagneticButton>
+            <MagneticButton
+              href="#work"
+              variant="outline"
+              onClick={() => handleHeroCtaClick(hero.ctaSecondary.label, hero.ctaSecondary.href)}
+            >
               {hero.ctaSecondary.label}
             </MagneticButton>
           </motion.div>
@@ -118,6 +136,7 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 3 }}
         className="label absolute bottom-8 left-6 z-10 hidden items-center gap-3 text-charcoal/60 md:left-12 lg:flex"
+        onClick={() => handleHeroCtaClick("Scroll", "#story")}
       >
         <motion.span
           aria-hidden

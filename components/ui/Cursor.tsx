@@ -16,7 +16,7 @@ export default function Cursor() {
     const fine = window.matchMedia("(pointer: fine)").matches;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!fine || reduced) return;
-    setEnabled(true);
+    const enable = requestAnimationFrame(() => setEnabled(true));
 
     const move = (e: MouseEvent) => {
       x.set(e.clientX);
@@ -25,7 +25,10 @@ export default function Cursor() {
       setHovering(!!target.closest("a, button, [data-cursor]"));
     };
     window.addEventListener("mousemove", move, { passive: true });
-    return () => window.removeEventListener("mousemove", move);
+    return () => {
+      cancelAnimationFrame(enable);
+      window.removeEventListener("mousemove", move);
+    };
   }, [x, y]);
 
   if (!enabled) return null;

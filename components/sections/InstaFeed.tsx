@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import posthog from "posthog-js";
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { images } from "@/lib/images";
@@ -18,6 +19,12 @@ export default function InstaFeed() {
             target="_blank"
             rel="noreferrer"
             className="link-underline label text-charcoal/70"
+            onClick={() => {
+              posthog.capture("instagram_link_clicked", {
+                destination: site.socials[0].href,
+                source: "instagram_handle",
+              });
+            }}
           >
             @bornfree__india
           </a>
@@ -35,6 +42,13 @@ export default function InstaFeed() {
               viewport={{ once: true, margin: "-5% 0px" }}
               transition={{ delay: i * 0.07, duration: 0.7, ease: [0.65, 0.05, 0, 1] }}
               className="group relative aspect-square overflow-hidden"
+              onClick={() => {
+                posthog.capture("instagram_link_clicked", {
+                  destination: site.socials[0].href,
+                  source: "instagram_feed",
+                  image_position: i + 1,
+                });
+              }}
             >
               <Image
                 src={img.src}

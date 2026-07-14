@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import posthog from "posthog-js";
 import { AnimatePresence, motion, useMotionValue, useSpring } from "motion/react";
 import { work } from "@/lib/content";
 import { images } from "@/lib/images";
@@ -51,6 +52,15 @@ export default function SelectedWork() {
                 href={`/work/${w.slug}`}
                 onMouseEnter={() => setHovered(i)}
                 onMouseLeave={() => setHovered(null)}
+                onClick={() => {
+                  posthog.capture("case_study_selected", {
+                    case_study_slug: w.slug,
+                    case_study_title: w.title,
+                    case_study_category: w.category,
+                    position: i + 1,
+                    section: "selected_work",
+                  });
+                }}
                 className="group grid grid-cols-12 items-baseline gap-4 py-8 transition-colors duration-500 hover:bg-beige md:py-12"
               >
                 <span className="label col-span-2 text-charcoal/50 md:col-span-1">{w.index}</span>

@@ -1,5 +1,6 @@
 "use client";
 
+import posthog from "posthog-js";
 import { motion } from "motion/react";
 import { testimonials, press } from "@/lib/content";
 import TextReveal from "@/components/ui/TextReveal";
@@ -18,6 +19,13 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10% 0px" }}
               transition={{ delay: i * 0.12, duration: 0.9, ease: [0.65, 0.05, 0, 1] }}
+              onViewportEnter={() => {
+                posthog.capture("testimonial_viewed", {
+                  testimonial_position: i + 1,
+                  testimonial_role: t.role,
+                  section: "testimonials",
+                });
+              }}
               className={`flex flex-col justify-between border-t-2 border-ink pt-8 ${i % 2 ? "md:mt-16" : ""}`}
             >
               <p className="font-serif-editorial text-2xl italic leading-snug text-charcoal md:text-[1.7rem]">

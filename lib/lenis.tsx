@@ -20,7 +20,7 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
       duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
-    setLenis(instance);
+    const publish = requestAnimationFrame(() => setLenis(instance));
 
     const raf = (time: number) => {
       instance.raf(time);
@@ -29,6 +29,7 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     rafRef.current = requestAnimationFrame(raf);
 
     return () => {
+      cancelAnimationFrame(publish);
       cancelAnimationFrame(rafRef.current);
       instance.destroy();
       setLenis(null);

@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { journal } from "@/lib/content";
 import Footer from "@/components/sections/Footer";
+import { PostHogEvent, PostHogLink } from "@/components/analytics/PostHogEvent";
 
 export function generateStaticParams() {
   return journal.map((p) => ({ slug: p.slug }));
@@ -57,6 +58,14 @@ export default async function JournalPage({
   return (
     <main id="main" className="bg-ivory">
       <article className="mx-auto max-w-3xl px-6 pb-28 pt-32 md:pt-40">
+        <PostHogEvent
+          event="journal_entry_viewed"
+          properties={{
+            journal_slug: post.slug,
+            journal_title: post.title,
+            journal_date: post.date,
+          }}
+        />
         <Link href="/#journal" className="link-underline label text-charcoal/60">
           ← Back to the journal
         </Link>
@@ -87,12 +96,21 @@ export default async function JournalPage({
 
         <p className="label mt-16 text-charcoal/50">— Disha Shaw</p>
 
-        <Link href={`/journal/${next.slug}`} className="group mt-24 block border-t border-ink/15 pt-10">
+        <PostHogLink
+          href={`/journal/${next.slug}`}
+          className="group mt-24 block border-t border-ink/15 pt-10"
+          event="next_journal_entry_clicked"
+          properties={{
+            current_journal_slug: post.slug,
+            next_journal_slug: next.slug,
+            next_journal_title: next.title,
+          }}
+        >
           <span className="label text-charcoal/50">Read next</span>
           <span className="headline-md mt-2 block transition-transform duration-700 ease-[var(--ease-luxe)] group-hover:translate-x-3">
             {next.title} <span className="text-ember">→</span>
           </span>
-        </Link>
+        </PostHogLink>
       </article>
       <Footer />
     </main>

@@ -10,8 +10,8 @@ export default function Preloader() {
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setDone(true);
-      return;
+      const id = requestAnimationFrame(() => setDone(true));
+      return () => cancelAnimationFrame(id);
     }
     document.documentElement.style.overflow = "hidden";
     const start = performance.now();

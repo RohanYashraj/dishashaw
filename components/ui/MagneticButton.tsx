@@ -8,10 +8,11 @@ type Props = {
   children: React.ReactNode;
   variant?: "solid" | "outline" | "ghost";
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 };
 
 /** Pill button that leans toward the cursor and morphs slightly on hover. */
-export default function MagneticButton({ href, children, variant = "solid", className = "" }: Props) {
+export default function MagneticButton({ href, children, variant = "solid", className = "", onClick }: Props) {
   const ref = useRef<HTMLAnchorElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -41,6 +42,7 @@ export default function MagneticButton({ href, children, variant = "solid", clas
       href={href}
       onMouseMove={onMove}
       onMouseLeave={reset}
+      onClick={onClick}
       style={{ x: sx, y: sy }}
       className={`label inline-flex items-center gap-3 rounded-full px-8 py-4 transition-colors duration-500 hover:rounded-2xl ${styles} ${className}`}
     >

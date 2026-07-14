@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { work } from "@/lib/content";
 import { images } from "@/lib/images";
 import Footer from "@/components/sections/Footer";
+import { PostHogEvent, PostHogLink } from "@/components/analytics/PostHogEvent";
 
 type ImageKey = keyof typeof images;
 
@@ -56,6 +57,15 @@ export default async function CaseStudyPage({
   return (
     <main id="main" className="bg-ivory">
       <article className="mx-auto max-w-[110rem] px-6 pb-28 pt-32 md:px-12 md:pt-40">
+        <PostHogEvent
+          event="case_study_viewed"
+          properties={{
+            case_study_slug: study.slug,
+            case_study_title: study.title,
+            case_study_category: study.category,
+            case_study_year: study.year,
+          }}
+        />
         <Link href="/#work" className="link-underline label text-charcoal/60">
           ← Back to the work
         </Link>
@@ -106,15 +116,22 @@ export default async function CaseStudyPage({
         </div>
 
         {/* Next study */}
-        <Link
+        <PostHogLink
           href={`/work/${next.slug}`}
           className="group mt-32 flex flex-col gap-2 border-t border-ink/15 pt-10"
+          prefetch
+          event="next_case_study_clicked"
+          properties={{
+            current_case_study_slug: study.slug,
+            next_case_study_slug: next.slug,
+            next_case_study_title: next.title,
+          }}
         >
           <span className="label text-charcoal/50">Next study — {next.index}</span>
           <span className="headline-lg transition-transform duration-700 ease-[var(--ease-luxe)] group-hover:translate-x-4">
             {next.title} <span className="text-ember">→</span>
           </span>
-        </Link>
+        </PostHogLink>
       </article>
       <Footer />
     </main>

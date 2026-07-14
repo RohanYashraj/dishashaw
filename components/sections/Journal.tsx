@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import posthog from "posthog-js";
 import { motion } from "motion/react";
 import { journal } from "@/lib/content";
 import TextReveal from "@/components/ui/TextReveal";
@@ -38,6 +39,15 @@ export default function Journal() {
             >
               <Link
                 href={`/journal/${post.slug}`}
+                onClick={() => {
+                  posthog.capture("journal_entry_selected", {
+                    journal_slug: post.slug,
+                    journal_title: post.title,
+                    journal_date: post.date,
+                    position: i + 1,
+                    section: "journal",
+                  });
+                }}
                 className="group grid grid-cols-12 items-baseline gap-4 py-8 transition-colors duration-500 hover:bg-beige md:py-10"
               >
                 <span className="label col-span-12 text-charcoal/50 md:col-span-2">{post.date}</span>
