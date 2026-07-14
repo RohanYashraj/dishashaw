@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { work } from "@/lib/content";
+import { site, work } from "@/lib/content";
+import ArrowUpRight from "@/components/ui/ArrowUpRight";
 import { getImage } from "@/lib/images";
 import Footer from "@/components/sections/Footer";
 import { PostHogEvent, PostHogLink } from "@/components/analytics/PostHogEvent";
@@ -110,6 +111,23 @@ export default async function CaseStudyPage({
             {study.body.map((para, i) => (
               <p key={i}>{para}</p>
             ))}
+            <p>
+              <PostHogLink
+                href={site.brandUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="link-underline label text-ember"
+                event="brand_link_clicked"
+                properties={{
+                  destination: site.brandUrl,
+                  source: "case_study",
+                  case_study_slug: study.slug,
+                }}
+              >
+                See this work live — bornfreefashions.com{" "}
+                <ArrowUpRight aria-hidden className="inline size-[1em] align-[-0.1em]" />
+              </PostHogLink>
+            </p>
           </div>
         </div>
 

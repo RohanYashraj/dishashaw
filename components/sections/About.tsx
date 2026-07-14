@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import posthog from "posthog-js";
 import { motion } from "motion/react";
-import { about } from "@/lib/content";
+import { about, site } from "@/lib/content";
+import ArrowUpRight from "@/components/ui/ArrowUpRight";
 import { images } from "@/lib/images";
 import TextReveal from "@/components/ui/TextReveal";
 import ParallaxImage from "@/components/ui/ParallaxImage";
@@ -73,6 +75,28 @@ export default function About() {
                   {para}
                 </motion.p>
               ))}
+              <motion.p
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-10% 0px" }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+              >
+                <a
+                  href={site.brandUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="link-underline label text-ember"
+                  onClick={() => {
+                    posthog.capture("brand_link_clicked", {
+                      destination: site.brandUrl,
+                      source: "about_story",
+                    });
+                  }}
+                >
+                  Explore the brand — bornfreefashions.com{" "}
+                  <ArrowUpRight aria-hidden className="inline size-[1em] align-[-0.1em]" />
+                </a>
+              </motion.p>
             </div>
           </div>
 

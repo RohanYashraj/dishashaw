@@ -9,10 +9,12 @@ type Props = {
   variant?: "solid" | "outline" | "ghost";
   className?: string;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+  target?: string;
+  rel?: string;
 };
 
 /** Pill button that leans toward the cursor and morphs slightly on hover. */
-export default function MagneticButton({ href, children, variant = "solid", className = "", onClick }: Props) {
+export default function MagneticButton({ href, children, variant = "solid", className = "", onClick, target, rel }: Props) {
   const ref = useRef<HTMLAnchorElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -40,6 +42,8 @@ export default function MagneticButton({ href, children, variant = "solid", clas
     <motion.a
       ref={ref}
       href={href}
+      target={target}
+      rel={rel}
       onMouseMove={onMove}
       onMouseLeave={reset}
       onClick={onClick}
