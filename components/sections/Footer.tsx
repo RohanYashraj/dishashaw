@@ -1,5 +1,6 @@
 "use client";
 
+import posthog from "posthog-js";
 import { motion } from "motion/react";
 import ArrowUpRight from "@/components/ui/ArrowUpRight";
 import { site } from "@/lib/content";
@@ -23,7 +24,18 @@ export default function Footer() {
           <div>
             <p className="label text-ivory/50">Founder · Creative Director</p>
             <p className="label mt-1 text-ivory/50">
-              <a href={site.brandUrl} target="_blank" rel="noreferrer" className="link-underline">
+              <a
+                href={site.brandUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="link-underline"
+                onClick={() => {
+                  posthog.capture("brand_link_clicked", {
+                    destination: site.brandUrl,
+                    source: "footer",
+                  });
+                }}
+              >
                 {site.brand} <ArrowUpRight aria-hidden className="inline size-[1em] align-[-0.1em]" />
               </a>
             </p>

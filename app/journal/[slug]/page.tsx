@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { journal } from "@/lib/content";
+import { journal, site } from "@/lib/content";
+import ArrowUpRight from "@/components/ui/ArrowUpRight";
 import Footer from "@/components/sections/Footer";
 import { PostHogEvent, PostHogLink } from "@/components/analytics/PostHogEvent";
 
@@ -91,6 +92,24 @@ export default async function JournalPage({
         </div>
 
         <p className="label mt-16 text-charcoal/50">— Disha Shaw</p>
+
+        <p className="mt-8">
+          <PostHogLink
+            href={site.brandUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="link-underline label text-ember"
+            event="brand_link_clicked"
+            properties={{
+              destination: site.brandUrl,
+              source: "journal_entry",
+              journal_slug: post.slug,
+            }}
+          >
+            Wear the philosophy — bornfreefashions.com{" "}
+            <ArrowUpRight aria-hidden className="inline size-[1em] align-[-0.1em]" />
+          </PostHogLink>
+        </p>
 
         <PostHogLink
           href={`/journal/${next.slug}`}

@@ -2,11 +2,12 @@
 
 import { motion } from "motion/react";
 
-/** Dashed "running stitch" divider that sews itself in as it enters the viewport. */
-export default function StitchDivider({ className = "" }: { className?: string }) {
+/** Dashed "running stitch" divider that sews itself in as it enters the viewport.
+ *  Stitch colour comes from the text colour on `className` (defaults to stone). */
+export default function StitchDivider({ className = "text-stone/60" }: { className?: string }) {
   return (
     <div aria-hidden className={`mx-auto w-full max-w-6xl px-6 ${className}`}>
-      <svg viewBox="0 0 1200 24" fill="none" className="w-full text-stone/60">
+      <svg viewBox="0 0 1200 24" fill="none" className="w-full">
         <motion.path
           d="M0 12 Q 150 2, 300 12 T 600 12 T 900 12 T 1200 12"
           stroke="currentColor"

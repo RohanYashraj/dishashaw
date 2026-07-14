@@ -38,9 +38,23 @@ export default function Contact() {
           >
             {contact.cta} — {site.email}
           </MagneticButton>
+          <MagneticButton
+            href={site.brandUrl}
+            variant="ghost"
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => {
+              posthog.capture("brand_link_clicked", {
+                destination: site.brandUrl,
+                source: "contact",
+              });
+            }}
+          >
+            Shop Bornfree ↗
+          </MagneticButton>
         </div>
 
-        <StitchDivider className="mt-24 text-ivory/40" />
+        <StitchDivider className="mt-24 text-ivory" />
       </div>
     </section>
   );

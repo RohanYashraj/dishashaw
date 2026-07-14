@@ -3,7 +3,7 @@
 import Image from "next/image";
 import posthog from "posthog-js";
 import { motion } from "motion/react";
-import { hero } from "@/lib/content";
+import { hero, site } from "@/lib/content";
 import { images } from "@/lib/images";
 import TextReveal from "@/components/ui/TextReveal";
 import MagneticButton from "@/components/ui/MagneticButton";
@@ -75,7 +75,29 @@ export default function Hero() {
           </motion.p>
 
           <TextReveal delay={2.35} className="mt-6 max-w-sm text-sm leading-relaxed text-charcoal/70 md:text-base">
-            {hero.sub}
+            {hero.sub.split("Bornfree").map((part, i) =>
+              i === 0 ? (
+                part
+              ) : (
+                <span key={i}>
+                  <a
+                    href={site.brandUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="link-underline font-medium text-ink"
+                    onClick={() => {
+                      posthog.capture("brand_link_clicked", {
+                        destination: site.brandUrl,
+                        source: "hero_sub",
+                      });
+                    }}
+                  >
+                    Bornfree
+                  </a>
+                  {part}
+                </span>
+              ),
+            )}
           </TextReveal>
 
           <motion.div
