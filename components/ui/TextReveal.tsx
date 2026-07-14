@@ -20,13 +20,17 @@ export default function TextReveal({ children, delay = 0, className = "", as = "
   const Tag = motion[as];
   return (
     <motion.span
-      className="block overflow-hidden"
+      // pb/-mb: descenders (italic serif g, y…) overflow the line box at
+      // line-height 1 — let them render into the mask's padding without
+      // changing the layout height. hidden y > 100% + padding keeps the
+      // text fully clipped before the reveal.
+      className="block overflow-hidden pb-[0.2em] -mb-[0.2em]"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
     >
       <Tag
-        variants={{ hidden: { y: "110%" }, visible: { y: 0 } }}
+        variants={{ hidden: { y: "130%" }, visible: { y: 0 } }}
         transition={{ duration: 1, delay, ease: EASE_LUXE }}
         className={`block ${className}`}
       >
