@@ -121,6 +121,16 @@ body {
   90% { transform: translate(-2%, 4%); }
 }
 
+/* Editorial drop cap for opening paragraphs */
+.drop-cap::first-letter {
+  float: left;
+  margin-right: 0.75rem;
+  font-family: var(--font-serif);
+  font-size: 4.5rem;
+  line-height: 0.8;
+  color: var(--color-ember);
+}
+
 /* Image hover zoom frame */
 .zoom-frame {
   overflow: hidden;

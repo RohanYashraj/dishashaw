@@ -1,9 +1,10 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
+import ArrowUpRight from "@/components/ui/ArrowUpRight";
 import { site } from "@/lib/content";
 import { useLenis } from "@/lib/lenis";
+import { EASE_LUXE } from "@/lib/motion";
 
 export default function Footer() {
   const lenis = useLenis();
@@ -47,7 +48,7 @@ export default function Footer() {
           initial={{ y: 80, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true, margin: "0px 0px -5% 0px" }}
-          transition={{ duration: 1.1, ease: [0.65, 0.05, 0, 1] }}
+          transition={{ duration: 1.1, ease: EASE_LUXE }}
           className="text-outline mt-20 select-none whitespace-nowrap text-center font-display text-[13.5vw] font-semibold leading-none tracking-tight text-ivory/80"
         >
           DISHA&nbsp;SHAW

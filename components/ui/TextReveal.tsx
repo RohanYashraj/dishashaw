@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { EASE_LUXE } from "@/lib/motion";
 
 type Props = {
   children: React.ReactNode;
@@ -26,7 +27,7 @@ export default function TextReveal({ children, delay = 0, className = "", as = "
     >
       <Tag
         variants={{ hidden: { y: "110%" }, visible: { y: 0 } }}
-        transition={{ duration: 1, delay, ease: [0.65, 0.05, 0, 1] }}
+        transition={{ duration: 1, delay, ease: EASE_LUXE }}
         className={`block ${className}`}
       >
         {children}

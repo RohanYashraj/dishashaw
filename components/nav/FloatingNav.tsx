@@ -6,6 +6,7 @@ import posthog from "posthog-js";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { useLenis } from "@/lib/lenis";
+import { EASE_LUXE } from "@/lib/motion";
 
 const LINKS = [
   { label: "Home", href: "#home" },
@@ -40,6 +41,15 @@ export default function FloatingNav() {
     return () => observer.disconnect();
   }, [onHome]);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   const go = (e: React.MouseEvent, href: string, label: string) => {
     if (!onHome) return; // let Link navigate to /#section
     e.preventDefault();
@@ -61,7 +71,7 @@ export default function FloatingNav() {
       <motion.nav
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 1.8, duration: 0.9, ease: [0.65, 0.05, 0, 1] }}
+        transition={{ delay: 1.8, duration: 0.9, ease: EASE_LUXE }}
         className="fixed left-1/2 top-5 z-[320] -translate-x-1/2"
         aria-label="Primary"
       >
@@ -100,6 +110,7 @@ export default function FloatingNav() {
               setOpen((v) => !v);
             }}
             aria-expanded={open}
+            aria-controls="mobile-menu"
             aria-label={open ? "Close menu" : "Open menu"}
             className="label flex items-center gap-2 rounded-full px-4 py-2 md:hidden"
           >
@@ -111,10 +122,11 @@ export default function FloatingNav() {
       <AnimatePresence>
         {open && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.4, ease: [0.65, 0.05, 0, 1] }}
+            transition={{ duration: 0.4, ease: EASE_LUXE }}
             className="fixed inset-0 z-[310] flex flex-col items-center justify-center gap-2 bg-ivory/95 backdrop-blur-2xl md:hidden"
           >
             {LINKS.map(({ label, href }, i) => (

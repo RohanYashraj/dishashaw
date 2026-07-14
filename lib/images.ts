@@ -166,3 +166,12 @@ export const images = {
     { src: bf("10435-MEDIUM_OLIVE-LEFT-Photoroom_2ec30766-9bd1-408e-bc31-e04b791812bb.jpg", 700), alt: "Feed — olive fit", source: "bornfree" },
   ] as Img[],
 } as const;
+
+/**
+ * Keys that resolve to a single image (the `gallery` / `feed` arrays are
+ * excluded). Content entries reference images by this type, so a typo in an
+ * `imageKey` fails at compile time instead of crashing at runtime.
+ */
+export type ImageKey = Exclude<keyof typeof images, "gallery" | "feed">;
+
+export const getImage = (key: ImageKey): Img => images[key];

@@ -4,6 +4,7 @@ import posthog from "posthog-js";
 import { motion } from "motion/react";
 import { testimonials, press } from "@/lib/content";
 import TextReveal from "@/components/ui/TextReveal";
+import { EASE_LUXE } from "@/lib/motion";
 
 export default function Testimonials() {
   return (
@@ -18,7 +19,7 @@ export default function Testimonials() {
               initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10% 0px" }}
-              transition={{ delay: i * 0.12, duration: 0.9, ease: [0.65, 0.05, 0, 1] }}
+              transition={{ delay: i * 0.12, duration: 0.9, ease: EASE_LUXE }}
               onViewportEnter={() => {
                 posthog.capture("testimonial_viewed", {
                   testimonial_position: i + 1,

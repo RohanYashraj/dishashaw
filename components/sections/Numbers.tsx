@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
 import { numbers } from "@/lib/content";
+import { EASE_LUXE } from "@/lib/motion";
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -46,7 +47,7 @@ export default function Numbers() {
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.1, duration: 0.8, ease: [0.65, 0.05, 0, 1] }}
+            transition={{ delay: i * 0.1, duration: 0.8, ease: EASE_LUXE }}
             className={`flex flex-col gap-3 ${i % 2 ? "md:mt-12" : ""}`}
           >
             <span className="headline-lg">

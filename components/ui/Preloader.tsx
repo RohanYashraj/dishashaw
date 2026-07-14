@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { EASE_LUXE } from "@/lib/motion";
 
 /** Brief editorial loading curtain: name reveal + count, then lifts. */
 export default function Preloader() {
@@ -48,13 +49,13 @@ export default function Preloader() {
         <motion.div
           className="fixed inset-0 z-[500] flex flex-col items-center justify-center bg-ink text-ivory"
           exit={{ y: "-100%" }}
-          transition={{ duration: 0.9, ease: [0.65, 0.05, 0, 1] }}
+          transition={{ duration: 0.9, ease: EASE_LUXE }}
           aria-hidden
         >
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.65, 0.05, 0, 1] }}
+            transition={{ duration: 0.8, ease: EASE_LUXE }}
             className="headline-md"
           >
             Disha <span className="font-serif-editorial italic font-normal">Shaw</span>

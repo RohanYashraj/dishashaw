@@ -3,11 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { work } from "@/lib/content";
-import { images } from "@/lib/images";
+import { getImage } from "@/lib/images";
 import Footer from "@/components/sections/Footer";
 import { PostHogEvent, PostHogLink } from "@/components/analytics/PostHogEvent";
-
-type ImageKey = keyof typeof images;
 
 export function generateStaticParams() {
   return work.map((w) => ({ slug: w.slug }));
@@ -21,9 +19,9 @@ export async function generateMetadata({
   const { slug } = await params;
   const study = work.find((w) => w.slug === slug);
   if (!study) return {};
-  const img = images[study.imageKey as ImageKey] as { src: string; alt: string };
+  const img = getImage(study.imageKey);
   return {
-    title: `${study.title} — Disha Shaw`,
+    title: study.title,
     description: study.intro,
     alternates: { canonical: `/work/${study.slug}` },
     openGraph: {
@@ -52,7 +50,7 @@ export default async function CaseStudyPage({
   if (idx === -1) notFound();
   const study = work[idx];
   const next = work[(idx + 1) % work.length];
-  const img = images[study.imageKey as ImageKey] as { src: string; alt: string };
+  const img = getImage(study.imageKey);
 
   return (
     <main id="main" className="bg-ivory">

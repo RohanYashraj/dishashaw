@@ -4,15 +4,14 @@ import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { philosophy } from "@/lib/content";
-import { images } from "@/lib/images";
+import { getImage } from "@/lib/images";
+import { EASE_LUXE } from "@/lib/motion";
 import TextReveal from "@/components/ui/TextReveal";
-
-type ImageKey = keyof typeof images;
 
 export default function Philosophy() {
   const [active, setActive] = useState(0);
   const pillar = philosophy.pillars[active];
-  const img = images[pillar.imageKey as ImageKey] as { src: string; alt: string };
+  const img = getImage(pillar.imageKey);
 
   return (
     <section id="philosophy" className="relative bg-ink py-28 text-ivory md:py-40">
@@ -36,6 +35,7 @@ export default function Philosophy() {
                   onMouseEnter={() => setActive(i)}
                   onFocus={() => setActive(i)}
                   onClick={() => setActive(i)}
+                  aria-expanded={active === i}
                   className="group flex w-full items-baseline justify-between gap-6 py-6 text-left md:py-8"
                 >
                   <span
@@ -53,7 +53,7 @@ export default function Philosophy() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.6, ease: [0.65, 0.05, 0, 1] }}
+                      transition={{ duration: 0.6, ease: EASE_LUXE }}
                       className="max-w-xl overflow-hidden pb-8 font-serif-editorial text-xl italic text-ivory/70 md:text-2xl"
                     >
                       {p.text}
@@ -72,7 +72,7 @@ export default function Philosophy() {
                   initial={{ opacity: 0, scale: 1.08 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.8, ease: [0.65, 0.05, 0, 1] }}
+                  transition={{ duration: 0.8, ease: EASE_LUXE }}
                   className="absolute inset-0"
                 >
                   <Image src={img.src} alt={img.alt} fill sizes="(max-width: 768px) 100vw, 30vw" className="object-cover" />

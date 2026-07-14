@@ -3,10 +3,11 @@
 import Image from "next/image";
 import posthog from "posthog-js";
 import { motion } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
+import ArrowUpRight from "@/components/ui/ArrowUpRight";
 import { images } from "@/lib/images";
 import { site } from "@/lib/content";
 import TextReveal from "@/components/ui/TextReveal";
+import { EASE_LUXE } from "@/lib/motion";
 
 export default function InstaFeed() {
   return (
@@ -40,7 +41,7 @@ export default function InstaFeed() {
               initial={{ opacity: 0, scale: 0.94 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-5% 0px" }}
-              transition={{ delay: i * 0.07, duration: 0.7, ease: [0.65, 0.05, 0, 1] }}
+              transition={{ delay: i * 0.07, duration: 0.7, ease: EASE_LUXE }}
               className="group relative aspect-square overflow-hidden"
               onClick={() => {
                 posthog.capture("instagram_link_clicked", {
