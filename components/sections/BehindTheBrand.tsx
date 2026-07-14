@@ -1,11 +1,9 @@
 "use client";
 
 import { behind } from "@/lib/content";
-import { images } from "@/lib/images";
+import { getImage } from "@/lib/images";
 import TextReveal from "@/components/ui/TextReveal";
 import ParallaxImage from "@/components/ui/ParallaxImage";
-
-type ImageKey = keyof typeof images;
 
 export default function BehindTheBrand() {
   return (
@@ -15,7 +13,7 @@ export default function BehindTheBrand() {
 
         <div className="mt-20 space-y-28 md:space-y-40">
           {behind.quotes.map((q, i) => {
-            const img = images[q.imageKey as ImageKey] as { src: string; alt: string };
+            const img = getImage(q.imageKey);
             const flipped = i % 2 === 1;
             return (
               <div key={q.text} className="grid grid-cols-12 items-center gap-y-10 md:gap-x-12">

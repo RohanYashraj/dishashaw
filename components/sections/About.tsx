@@ -7,6 +7,7 @@ import { about } from "@/lib/content";
 import { images } from "@/lib/images";
 import TextReveal from "@/components/ui/TextReveal";
 import ParallaxImage from "@/components/ui/ParallaxImage";
+import { EASE_LUXE } from "@/lib/motion";
 
 export default function About() {
   const [activeMilestone, setActiveMilestone] = useState(1);
@@ -67,7 +68,7 @@ export default function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-10% 0px" }}
                   transition={{ delay: i * 0.1, duration: 0.8 }}
-                  className={i === 0 ? "first-letter:float-left first-letter:mr-3 first-letter:font-serif-editorial first-letter:text-7xl first-letter:leading-[0.8] first-letter:text-ember" : ""}
+                  className={i === 0 ? "drop-cap" : ""}
                 >
                   {para}
                 </motion.p>
@@ -103,6 +104,7 @@ export default function About() {
                   onMouseEnter={() => setActiveMilestone(i)}
                   onFocus={() => setActiveMilestone(i)}
                   onClick={() => setActiveMilestone(i)}
+                  aria-expanded={active}
                   className={`group relative flex min-h-44 flex-col items-start justify-between p-5 text-left transition-colors duration-700 md:min-h-56 ${
                     active ? "bg-ink text-ivory" : "bg-ivory text-ink hover:bg-beige"
                   }`}
@@ -115,7 +117,7 @@ export default function About() {
                     <motion.span
                       initial={false}
                       animate={{ opacity: active ? 1 : 0, height: active ? "auto" : 0 }}
-                      transition={{ duration: 0.5, ease: [0.65, 0.05, 0, 1] }}
+                      transition={{ duration: 0.5, ease: EASE_LUXE }}
                       className="mt-2 block overflow-hidden text-sm leading-snug text-ivory/70"
                     >
                       {m.text}

@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { MotionConfig } from "motion/react";
 import Lenis from "lenis";
 
 const LenisContext = createContext<Lenis | null>(null);
@@ -36,5 +37,11 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  return <LenisContext.Provider value={lenis}>{children}</LenisContext.Provider>;
+  return (
+    <LenisContext.Provider value={lenis}>
+      {/* Disable motion-driven transform animations for users who prefer
+          reduced motion — the CSS kill-switch can't reach JS inline styles. */}
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
+    </LenisContext.Provider>
+  );
 }

@@ -7,6 +7,8 @@
  * with confirmed ones when available.
  */
 
+import type { ImageKey } from "./images";
+
 export const site = {
   name: "Disha Shaw",
   role: "Founder & Creative Director",
@@ -62,7 +64,13 @@ export const about = {
   ],
 };
 
-export const philosophy = {
+export type Pillar = { word: string; text: string; imageKey: ImageKey };
+
+export const philosophy: {
+  intro: string;
+  statement: string;
+  pillars: Pillar[];
+} = {
   intro: "Why Bornfree exists",
   statement: "Freedom of Body — clothing should move the way you do, never the other way around.",
   pillars: [
@@ -80,7 +88,7 @@ export type CaseStudy = {
   title: string;
   category: string;
   year: string;
-  imageKey: string;
+  imageKey: ImageKey;
   intro: string;
   body: string[];
   quote: string;
@@ -164,7 +172,9 @@ export const work: CaseStudy[] = [
   },
 ];
 
-export const process = {
+export type ProcessStep = { label: string; text: string; imageKey: ImageKey };
+
+export const process: { title: string; steps: ProcessStep[] } = {
   title: "The Creative Process",
   steps: [
     { label: "Research", text: "Fits begin with bodies. Real measurements, real routines.", imageKey: "processResearch" },
@@ -176,7 +186,9 @@ export const process = {
   ],
 };
 
-export const behind = {
+export type BrandQuote = { text: string; sub: string; imageKey: ImageKey };
+
+export const behind: { quotes: BrandQuote[] } = {
   quotes: [
     { text: "Freedom of Body isn't a slogan. It's a spec.", sub: "Every fit decision traces back to one test: can you forget you're wearing it? Through a commute, a workday, a long evening on the floor with the kids.", imageKey: "behindMovement" },
     { text: "I believe comfort is a luxury.", sub: "The most expensive feeling in the world is being completely at ease. We manufacture that feeling — and soften it in the wash before it ships.", imageKey: "behindComfort" },

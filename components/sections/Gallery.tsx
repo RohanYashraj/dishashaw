@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { images } from "@/lib/images";
 import TextReveal from "@/components/ui/TextReveal";
+import { EASE_LUXE } from "@/lib/motion";
 
 /*
  * Editorial polaroid wall: three rows of three on 12 columns. Every tile
@@ -56,7 +57,7 @@ export default function Gallery() {
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0, rotate: l.tilt }}
                 viewport={{ once: true, margin: "-6% 0px" }}
-                transition={{ duration: 0.9, delay: (i % 3) * 0.1, ease: [0.65, 0.05, 0, 1] }}
+                transition={{ duration: 0.9, delay: (i % 3) * 0.1, ease: EASE_LUXE }}
                 style={{ rotate: l.tilt }}
                 className={`group relative bg-white p-3 pb-14 shadow-md transition-shadow duration-500 hover:shadow-xl ${l.span} ${l.offset}`}
               >

@@ -6,10 +6,9 @@ import Link from "next/link";
 import posthog from "posthog-js";
 import { AnimatePresence, motion, useMotionValue, useSpring } from "motion/react";
 import { work } from "@/lib/content";
-import { images } from "@/lib/images";
+import { getImage } from "@/lib/images";
 import TextReveal from "@/components/ui/TextReveal";
-
-type ImageKey = keyof typeof images;
+import { EASE_LUXE } from "@/lib/motion";
 
 export default function SelectedWork() {
   const [hovered, setHovered] = useState<number | null>(null);
@@ -25,7 +24,7 @@ export default function SelectedWork() {
 
   const hoveredImg =
     hovered !== null
-      ? (images[work[hovered].imageKey as ImageKey] as { src: string; alt: string })
+      ? getImage(work[hovered].imageKey)
       : null;
 
   return (
@@ -86,7 +85,7 @@ export default function SelectedWork() {
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.35, ease: [0.65, 0.05, 0, 1] }}
+            transition={{ duration: 0.35, ease: EASE_LUXE }}
             style={{ x: px, y: py }}
             className="pointer-events-none fixed left-0 top-0 z-[200] hidden lg:block"
             aria-hidden

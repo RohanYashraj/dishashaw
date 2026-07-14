@@ -18,7 +18,7 @@ export async function generateMetadata({
   const post = journal.find((p) => p.slug === slug);
   if (!post) return {};
   return {
-    title: `${post.title} — Disha Shaw`,
+    title: post.title,
     description: post.excerpt,
     alternates: { canonical: `/journal/${post.slug}` },
     openGraph: {
@@ -83,11 +83,7 @@ export default async function JournalPage({
           {post.body.map((para, i) => (
             <p
               key={i}
-              className={
-                i === 0
-                  ? "first-letter:float-left first-letter:mr-3 first-letter:font-serif-editorial first-letter:text-7xl first-letter:leading-[0.8] first-letter:text-ember"
-                  : ""
-              }
+              className={i === 0 ? "drop-cap" : ""}
             >
               {para}
             </p>

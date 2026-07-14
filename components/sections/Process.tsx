@@ -2,13 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { process } from "@/lib/content";
-import { images } from "@/lib/images";
+import { getImage } from "@/lib/images";
 import TextReveal from "@/components/ui/TextReveal";
-
-type ImageKey = keyof typeof images;
 
 /** GSAP-pinned horizontal storytelling strip: Research → Launch. */
 export default function Process() {
@@ -19,28 +15,42 @@ export default function Process() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (window.innerWidth < 768) return; // vertical stack on mobile
 
-    gsap.registerPlugin(ScrollTrigger);
     const section = sectionRef.current;
     const track = trackRef.current;
     if (!section || !track) return;
 
-    const ctx = gsap.context(() => {
-      const distance = () => track.scrollWidth - window.innerWidth;
-      gsap.to(track, {
-        x: () => -distance(),
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: () => `+=${distance()}`,
-          scrub: 0.8,
-          pin: true,
-          invalidateOnRefresh: true,
-        },
-      });
-    }, section);
+    // GSAP is only needed for this pinned strip — load it on demand so it
+    // stays out of the initial bundle.
+    let cancelled = false;
+    let ctx: { revert: () => void } | undefined;
 
-    return () => ctx.revert();
+    Promise.all([import("gsap"), import("gsap/ScrollTrigger")]).then(
+      ([{ gsap }, { ScrollTrigger }]) => {
+        if (cancelled) return;
+        gsap.registerPlugin(ScrollTrigger);
+
+        ctx = gsap.context(() => {
+          const distance = () => track.scrollWidth - window.innerWidth;
+          gsap.to(track, {
+            x: () => -distance(),
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top top",
+              end: () => `+=${distance()}`,
+              scrub: 0.8,
+              pin: true,
+              invalidateOnRefresh: true,
+            },
+          });
+        }, section);
+      }
+    );
+
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
   }, []);
 
   return (
@@ -63,7 +73,7 @@ export default function Process() {
           className="mt-16 flex flex-col gap-16 px-6 pb-24 md:mt-0 md:min-h-0 md:w-max md:flex-1 md:flex-row md:items-center md:gap-10 md:px-12 md:pb-6"
         >
           {process.steps.map((step, i) => {
-            const img = images[step.imageKey as ImageKey] as { src: string; alt: string };
+            const img = getImage(step.imageKey);
             return (
               <div key={step.label} className="flex flex-col items-start gap-10 md:flex-row md:items-center">
                 <article className={`w-full max-w-sm shrink-0 md:w-[21rem] ${i % 2 ? "md:mt-14" : "md:-mt-6"}`}>

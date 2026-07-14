@@ -8,8 +8,7 @@ import { images } from "@/lib/images";
 import TextReveal from "@/components/ui/TextReveal";
 import MagneticButton from "@/components/ui/MagneticButton";
 import ThreadIllustration from "./ThreadIllustration";
-
-const EASE = [0.65, 0.05, 0, 1] as const;
+import { EASE_LUXE } from "@/lib/motion";
 
 export default function Hero() {
   const handleHeroCtaClick = (ctaLabel: string, ctaHref: string) => {
@@ -60,7 +59,7 @@ export default function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.25, duration: 0.8, ease: EASE }}
+            transition={{ delay: 2.25, duration: 0.8, ease: EASE_LUXE }}
             className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-medium text-charcoal/85"
           >
             {hero.roles.map((role, i) => (
@@ -82,7 +81,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.55, duration: 0.8, ease: EASE }}
+            transition={{ delay: 2.55, duration: 0.8, ease: EASE_LUXE }}
             className="mt-10 flex flex-wrap items-center gap-4"
           >
             <MagneticButton
@@ -115,7 +114,7 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0, y: 80 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.9, duration: 1.3, ease: EASE }}
+        transition={{ delay: 1.9, duration: 1.3, ease: EASE_LUXE }}
         className="pointer-events-none relative z-0 ml-auto mt-auto w-[min(94vw,36rem)] lg:absolute lg:bottom-0 lg:right-0 lg:mt-0 lg:h-[min(92svh,64rem)] lg:w-[68vw]"
       >
         <Image

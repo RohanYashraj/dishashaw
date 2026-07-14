@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
@@ -25,9 +25,16 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  themeColor: "#f7f3ea",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: "Disha Shaw — Founder & Creative Director, Bornfree Fashions",
+  title: {
+    default: "Disha Shaw — Founder & Creative Director, Bornfree Fashions",
+    template: "%s — Disha Shaw",
+  },
   description:
     "The online home of Disha Shaw, founder and creative director of Bornfree Fashions — men's bottomwear made in Kolkata, built on the philosophy of Freedom of Body.",
   alternates: { canonical: "/" },
@@ -57,6 +64,26 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Person + Organization structured data for rich search results. Values are
+ * compile-time constants from lib/content.ts (no user input), and `<` is
+ * escaped, so the inline JSON-LD script is XSS-safe — React has no
+ * first-class API for JSON-LD, this is the Next.js-documented pattern.
+ */
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  jobTitle: site.role,
+  url: site.url,
+  sameAs: site.socials.map((s) => s.href),
+  worksFor: {
+    "@type": "Organization",
+    name: site.brand,
+    url: site.brandUrl,
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -65,6 +92,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${clash.variable} ${cormorant.variable}`}>
       <body className="grain">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
         <a
           href="#main"
           className="label sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[400] focus:bg-ink focus:text-ivory focus:px-4 focus:py-2"
